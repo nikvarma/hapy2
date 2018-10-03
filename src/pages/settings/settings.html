@@ -1,0 +1,174 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list class="setting-header-image">
+    <ion-item>
+      <div class="setting-user-setimage" #settinguserimage>
+        <!-- <canvas #uploaduserimage>
+
+        </canvas> -->
+        <img src="assets/img/draw/wallImage.jpg" />
+        <div class="cam-upload-button">
+          <button ion-button clear icon-only (click)="openBox($event)">
+            <ion-icon small name="camera"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div class="settings-scroll-group">
+
+    <ion-list class="settings-profile">
+      <ion-list-header>
+        Profile
+      </ion-list-header>
+      <ion-item (click)="editProfile()">
+        <ion-avatar item-start class="profile-image-avatar">
+          <img [src]="uImage" />
+          <div class="camera-profile-btn">
+            <button ion-button color="full-light" clear (click)="openBox($event)">
+              <ion-icon name="camera"></ion-icon>
+            </button>
+          </div>
+        </ion-avatar>
+        <h2>
+          {{ uName }}
+        </h2>
+        <p>
+          {{ uStatus }} &nbsp;
+        </p>
+      </ion-item>
+    </ion-list>
+
+    <div *ngIf="!isSettingsLoad" padding text-center>
+      <ion-spinner item-center color="danger" name="bubbles"></ion-spinner>
+    </div>
+    <form [formGroup]="form" *ngIf="settingsReady && isSettingsLoad">
+
+      <ion-list class="settings-icon-input" *ngIf="page == 'main'">
+        <ion-item>
+          <ion-icon name="volume-mute" small item-start></ion-icon>
+          <ion-label>{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
+          <ion-toggle [(ngModel)]="userSettings.volumn" [ngModelOptions]="{standalone: true}" (ionChange)="settingUpdate()"></ion-toggle>
+        </ion-item>
+
+        <!-- <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION2' | translate }}</ion-label>
+        <ion-input formControlName="option2"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
+        <ion-select formControlName="option3">
+          <ion-option value="1" checked="true">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+        <!-- <button ion-item [navPush]="subSettings" color="secondary" [navParams]="profileSettings">
+        {{ 'SETTINGS_PROFILE_BUTTON' | translate }}
+      </button> -->
+      </ion-list>
+
+      <!-- <ion-list *ngIf="page == 'profile'">
+      <ion-item>
+        <ion-label>{{ 'SETTINGS_OPTION4' | translate }}</ion-label>
+        <ion-input formControlName="option4"></ion-input>
+      </ion-item>
+    </ion-list> -->
+
+      <ion-list class="settings-icon-input">
+        <ion-list-header>
+          App Settings
+        </ion-list-header>
+
+        <ion-item>
+          <ion-icon class="location-icon-color" name="locate" small item-start></ion-icon>
+          <ion-label class="font-1-3">Location</ion-label>
+          <ion-toggle [(ngModel)]="userSettings.location" [ngModelOptions]="{standalone: true}" (ionChange)="settingUpdate()"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon class="notifications-icon-color" name="notifications" small item-start></ion-icon>
+          <ion-label class="font-1-3">Notification</ion-label>
+          <ion-toggle [(ngModel)]="userSettings.notification" [ngModelOptions]="{standalone: true}" (ionChange)="settingUpdate()"></ion-toggle>
+        </ion-item>
+
+        <button clear ion-item (click)="subSetting('call')">
+          <ion-icon class="call-icon-color" name="call" small item-start></ion-icon>
+          <ion-label>Call Setting</ion-label>
+        </button>
+
+        <button clear ion-item (click)="subSetting('chat')">
+          <ion-icon class="chat-icon-color" name="text" small item-start></ion-icon>
+          <ion-label>Chat Setting</ion-label>
+        </button>
+
+        <button clear ion-item (click)="subSetting('post')">
+          <ion-icon class="lock-icon-color" name="lock" small item-start></ion-icon>
+          <ion-label>Post Privacy</ion-label>
+        </button>
+
+        <ion-item>
+          <ion-icon class="backupcloud-icon-color" name="cloud-upload" small item-start></ion-icon>
+          <ion-label class="font-1-3">Backup to Cloud</ion-label>
+          <ion-toggle [(ngModel)]="userSettings.backup" [ngModelOptions]="{standalone: true}" (ionChange)="settingUpdate()"></ion-toggle>
+        </ion-item>
+
+        <button clear ion-item (click)="deleteAccount()">
+          <ion-icon class="trash-icon-color" name="trash" small item-start></ion-icon>
+          <ion-label>Delete Account</ion-label>
+        </button>
+      </ion-list>
+
+    </form>
+    <ion-list class="app-setting-info">
+      <ion-list-header>
+        Hapy
+      </ion-list-header>
+
+      <button ion-item clear>
+        <ion-icon item-start small name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </button>
+
+      <button ion-item clear>
+        <ion-icon item-start small name="lock"></ion-icon>
+        <ion-label>Privacy</ion-label>
+      </button>
+
+      <button ion-item clear>
+        <ion-icon item-start small name="paper"></ion-icon>
+        <ion-label>Term &amp; Condition</ion-label>
+      </button>
+
+      <button ion-item clear (click)="openFeedBackBox()">
+        <ion-icon item-start small name="chatboxes"></ion-icon>
+        <ion-label>Feedback
+          <p>
+            Love to here from you!
+          </p>
+        </ion-label>
+
+      </button>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-note class="font-1-1" small>Created On </ion-note>
+          <ion-note class="font-1-1" small>2018-06-30</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

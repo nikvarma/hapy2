@@ -1,0 +1,605 @@
+[
+  {
+    "icon": "😀",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😁",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😂",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "🤣",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "😃",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😄",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😅",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😆",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😉",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😊",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😋",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😎",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😍",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😘",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😗",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😙",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😚",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "🙂",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "🤗",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "🤔",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "😐",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "😑",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😶",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "🙄",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "😏",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😣",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😥",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😮",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "🤐",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😯",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😪",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😫",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😴",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😌",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😛",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😜",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😝",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "🤤",
+    "device": ["web"],
+    "text": ""
+  },
+  {
+    "icon": "😒",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😓",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😔",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "😕",
+    "device": ["web", "android"],
+    "text": ""
+  },
+  {
+    "icon": "🙃",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤑",
+    "device": ["web"]
+  },
+  {
+    "icon": "😲",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "☹️",
+    "device": ["web"]
+  },
+  {
+    "icon": "🙁",
+    "device": ["web"]
+  },
+  {
+    "icon": "😖",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😞",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😟",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😤",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😢",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😭",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😦",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😧",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😨",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😩",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😬",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😰",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😱",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😳",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😵",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😡",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😠",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "😷",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🤒",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤕",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤢",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤧",
+    "device": ["web"]
+  },
+  {
+    "icon": "😇",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🤠",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤡",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤥",
+    "device": ["web"]
+  },
+  {
+    "icon": "💀",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤖",
+    "device": ["web"]
+  },
+  {
+    "icon": "👥",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👤",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "✈️",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👩‍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "‍👩",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "❤️‍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👨‍️‍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👨",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "💋‍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👨‍👨‍👧‍👦",
+    "device": ["web"]
+  },
+  {
+    "icon": "👍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👎",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👊",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "💍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👅",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👃",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👀",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👂",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🙏",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "💑",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🤰",
+    "device": ["web"]
+  },
+  {
+    "icon": "👼",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎅",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎓",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👜",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🕶",
+    "device": ["web"]
+  },
+  {
+    "icon": "🌂",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👢",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👙",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👗",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "👚",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "⛄️",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "☔️",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌊",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌤",
+    "device": ["web"]
+  },
+  {
+    "icon": "⛅️",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌈",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌞",
+    "text": "Morning",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌝",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌛",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌜",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌚",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌗",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌙",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌎",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🌍",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🐇",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🐫",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🕊",
+    "device": ["web"]
+  },
+  {
+    "icon": "🐎",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🐁",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🦃",
+    "device": ["web"]
+  },
+  {
+    "icon": "🎧",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎤",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎯",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎳",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎮",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🎿",
+    "device": ["web"]
+  },
+  {
+    "icon": "🏋🏻‍",
+    "device": ["web"]
+  },
+  {
+    "icon": "⛳️",
+    "device": ["web", "android"]
+  },
+  {
+    "icon": "🏹",
+    "device": ["web"]
+  },
+  {
+    "icon": "🏏",
+    "device": ["web"]
+  },
+  {
+    "icon": "🤼‍",
+    "device": ["web"]
+  },
+  {
+    "icon": "🏋️‍",
+    "device": ["web"]
+  },
+  {
+    "icon": "🌨",
+    "device": ["web"]
+  }
+]

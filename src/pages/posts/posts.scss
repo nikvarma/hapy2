@@ -1,0 +1,116 @@
+page-posts {
+  ion-buttons {
+    & ion-icon {
+      &.icon-post-post,
+      &.icon-post-notification,
+      &.icon-post-camera {
+        font-size: 2.4rem;
+      }
+    }
+  }
+  #notification-button {
+    position: relative;
+    width: 42px;
+    top: 1px;
+    right: 1px;
+    overflow: visible !important;
+  }
+
+  #notifications-badge {
+    background-color: #343434;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 1.3rem;
+    border-radius: 100%;
+  }
+  ion-card {
+    &.card {
+      background: white;
+      width: 100%;
+      font-size: 1.4rem;
+      margin: 0 0 0.5rem 0;
+      & ion-item {
+        & ion-avatar[item-start] {
+          position: absolute;
+          top: 5px;
+        }
+        & .icon-post-top-clock {
+          color: #ed143d;
+          font-size: 1.2rem;
+        }
+        &.item-block {
+          min-height: 3.4rem;
+          background-color: rgba(255, 255, 255, 0.5);
+          color: #222;
+          & .item-inner {
+            margin-left: 50px;
+            min-height: inherit;
+            & ion-label {
+              margin: 10px 8px 10px 0;
+              & h2 {
+                font-weight: 500;
+              }
+              & h2,
+              & p {
+                font-size: inherit;
+                color: inherit;
+              }
+              & p {
+                font-size: calc(100% - 3px);
+                &.post-roller-header {
+                  white-space: initial;
+                }
+              }
+            }
+          }
+        }
+        padding-left: 8px;
+        font-size: inherit;
+        ion-avatar {
+          & img {
+            width: 45px;
+            height: 45px;
+          }
+          &[item-start] {
+            margin: 0px 5px 2px 0;
+          }
+        }
+      }
+      & ion-card-content {
+        padding: 8px 8px;
+        font-size: 1.3rem;
+        & p,
+        & span,
+        & div {
+          font-size: inherit;
+        }
+      }
+      & ion-row {
+        & ion-col {
+          font-size: 1rem;
+          & button {
+            padding: 0 0.5rem;
+            font-size: inherit;
+            & .button-inner {
+              & ion-icon {
+                font-size: 2.1rem;
+                &.icon-post-share,
+                &.icon-post-comment,
+                &.icon-post-like,
+                &.icon-post-clock,
+                &.icon-post-view {
+                  color: #bdbdbd;
+                }
+              }
+              font-size: inherit;
+            }
+          }
+          &.col ion-note {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+  }
+}

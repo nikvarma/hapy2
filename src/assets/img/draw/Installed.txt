@@ -1,0 +1,40 @@
+Full Screen
+
+-Permissions
+
+App-Availability
+
+-AppCenter Analytics
+-App Center Crashes
+-App Minimize
+-App Rating
+
+-App Update
+-App Version
+-GeoLocation
+-Badge
+BarCode Scanner - Send friend request using barcode scan
+Base64ToGallary - Save caputure image on device
+BrowserTab - Open Web page in app
+Calender - Reminder for birthday, event for user
+CallLog - Check if the called number registered
+Call Number - To Call using app
+Camera
+ClipBoard
+Conact
+-Device
+-Device Account
+-Device Feedback - Check
+-Device Orinetation
+Diagnostic
+Document Viewer - PDF like
+FCM - Notification
+file encryption - data encryption
+Firebase
+-Geofence - Send notification if user in boundary
+GeoLocation
+Globalization - to get the user local data
+Google Map
+-Header Color - Multitack header color
+Image Picker
+App BrowserTab

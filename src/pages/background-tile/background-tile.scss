@@ -1,0 +1,40 @@
+page-background-tile {
+    ion-buttons {
+        & button {
+            & .button-inner {
+                
+                & ion-icon.small-icon {
+                    font-size: 1.2em;
+                }
+                
+            }
+        }
+    }
+
+    .post-background-tiles {
+        background-color: white;
+        & ion-list {
+            &:first-child {
+                margin-top: 16px;
+            }
+            & ion-item {
+                padding-left: 0;
+                margin: 10px 0;
+                &.item {
+                    & .item-inner {
+                        padding-right: 0;
+                        & ion-label {
+                            & .tiles {
+                                line-height: 15em;
+                                padding: 15px;
+                                text-align: center;
+                            }
+                            font-size: 2rem;
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

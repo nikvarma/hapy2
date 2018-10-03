@@ -1,0 +1,98 @@
+page-welcome {
+  .splash-bg {
+    position: relative;
+    background: url("../assets/img/draw/hapy-vedio-call.jpg") no-repeat
+      transparent;
+    background-size: cover;
+    height: 45%;
+    z-index: 1;
+    background-repeat: repeat-x;
+    animation: animatedBackground 40s linear infinite;
+  }
+
+  @keyframes animatedBackground {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+
+  button.edit-small-btn {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+    ion-icon {
+      color: white;
+    }
+  }
+
+  .login-form {
+    .item {
+      .item-inner {
+        border-bottom: 1px solid white !important;
+        box-shadow: inset 0 -1px 0 0 transparent !important;
+        ion-label.label {
+          font-size: 1.4rem;
+        }
+        input,
+        select,
+        .select-text {
+          font-size: 1.4rem;
+        }
+      }
+      ion-label.label,
+      .select-icon .select-icon-inner {
+        color: white;
+      }
+      ion-datetime {
+        padding: 8px 8px 8px 0px;
+      }
+      .datetime-text {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .login-btn {
+    height: 4.9rem;
+  }
+
+  .splash-info {
+    position: relative;
+    z-index: 2;
+    margin-top: -64px;
+    text-align: center;
+  }
+
+  .splash-logo .profileimg {
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .splash-logo {
+    margin: auto;
+    //background: url('../assets/img/draw/hapy-logo.png') repeat transparent;
+    background: transparent;
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+  }
+  .splash-intro {
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 80%;
+    margin: auto;
+  }
+  button.login {
+    margin-top: 25px;
+    background-color: white;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    color: #333;
+
+    &.activated {
+      background-color: rgb(220, 220, 220);
+    }
+  }
+}

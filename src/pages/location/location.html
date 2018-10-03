@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only clear (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only clear [disabled]="saveDisabled" (click)="save()">
+        <ion-icon name="navigate"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-toolbar class="search-location-toolbar">
+    <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+  </ion-toolbar>
+  <ion-list class="location-search-list">
+    <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">
+      <ion-icon item-start name="pin"></ion-icon>
+      {{place.description}}
+    </ion-item>
+  </ion-list>
+  <div class="post-location-share">
+    <div #pleaseConnect id="please-connect" text-center>
+      <p>Please connect to the Internet...</p>
+    </div>
+
+    <div #map id="map" class="google-map" text-center>
+      <ion-spinner></ion-spinner>
+    </div>
+  </div>
+</ion-content>

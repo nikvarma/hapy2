@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)" class="contactlist-searchbar" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="bg-white">
+  <ion-list>
+    <ion-item *ngFor="let item of currentItems">
+
+
+
+      <ion-avatar item-start>
+        <img [src]="item.profilePic" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.name}}</h2>
+        <p>{{item.about}}</p>
+
+      </ion-label>
+      <ion-checkbox (ionChange)="addToTagList($event, item)" class="round-checkbox" round item-end>
+      </ion-checkbox>
+
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+
+<ion-footer class="theme-bg-color">
+  <ion-toolbar text-right>
+    <button ion-button clear small (click)="contactList()">
+      Ok
+    </button>
+  </ion-toolbar>
+</ion-footer>

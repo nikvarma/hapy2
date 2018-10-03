@@ -1,0 +1,335 @@
+ion-content.content {
+  background-attachment: fixed;
+  &.white-gb {
+    background-color: #f4f4f4;
+  }
+}
+
+.view-link {
+  & [target="_blank"] {
+    display: none;
+  }
+}
+
+ion-spinner.button-spinner {
+  &.white-spinner {
+    & svg {
+      & circle {
+        stroke: white;
+      }
+    }
+  }
+}
+
+.confirm-btn {
+  color: #ed143d;
+}
+
+.cancel-btn {
+  color: #a9a9a9;
+}
+
+.select-alert,
+ion-alert {
+  .alert-wrapper {
+    background-color: $background-color;
+    & .alert-head {
+      background-color: #222222;
+      padding: 15px 15px 15px;
+      color: #ffffff;
+      .alert-title {
+        font-size: 16px;
+      }
+    }
+
+    & .alert-message:not(:empty) {
+      padding: 24px;
+    }
+    & button {
+      &.alert-button {
+        &.confirm-btn {
+          font-size: 1.3rem;
+          color: #ed143d;
+        }
+        &.cancel-btn {
+          font-size: 1.3rem;
+          color: #a9a9a9;
+        }
+      }
+    }
+
+    & .alert-radio-group {
+      border-top: 0;
+      border-bottom: 0;
+      color: white;
+      & button {
+        &.alert-tappable {
+          min-height: 4rem;
+        }
+        .button-inner {
+          .alert-radio-icon {
+            width: 12px;
+            height: 12px;
+            border-color: white;
+            & .alert-radio-inner {
+              width: 5px;
+              height: 5px;
+              background-color: #444444;
+            }
+          }
+          .alert-radio-label {
+            font-size: 1.3rem;
+            color: white;
+          }
+        }
+      }
+    }
+    .alert-button-group {
+      .alert-button {
+        color: white;
+      }
+    }
+  }
+}
+ion-header {
+  &.header {
+    color: white;
+    & ion-navbar {
+      & div.toolbar-background {
+        background-color: #ed143d;
+        color: inherit;
+      }
+      & ion-buttons,
+      & button {
+        color: inherit;
+        & ion-buttons {
+          color: inherit;
+        }
+      }
+      & .toolbar-content {
+        & .toolbar-title {
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+
+.font-md {
+  font-size: 1.6rem !important;
+}
+
+.location-icon-color {
+  color: #6beb98;
+}
+
+.notifications-icon-color {
+  color: #0facf3;
+}
+
+.chat-icon-color {
+  color: #3ba3be;
+}
+
+.clock-icon-color {
+  color: #ffbe50;
+}
+
+.lock-icon-color {
+  color: #b5c8ce;
+}
+
+.call-icon-color {
+  color: #10a5e8;
+}
+
+.trash-icon-color {
+  color: #ff424f;
+}
+
+.backupcloud-icon-color,
+.film-icon-color {
+  color: #10a5e8;
+  & ion-icon {
+    color: #10a5e8;
+  }
+}
+
+ion-spinner {
+  & .loading {
+    & .spinner-dots circle {
+      color: #ed143d;
+    }
+  }
+}
+
+ion-note.note {
+  &.font-1-1 {
+    font-size: 1.1rem;
+  }
+}
+
+.video-icon-color {
+  & ion-icon {
+    color: #ed143d;
+  }
+  color: #ed143d;
+}
+
+.tile-icon-color {
+  color: #a9a9a9;
+}
+
+.cal-icon-color {
+  color: #ff8c00;
+}
+
+.contact-icon-color {
+  color: #ff8c00;
+}
+
+.image-icon-color {
+  color: #06f7e2;
+}
+
+.font-1-3 {
+  font-size: 1.3rem;
+}
+.font-1-1 {
+  font-size: 1.1rem;
+}
+
+ion-action-sheet {
+  &.action-sheet {
+    font-size: 1.3rem;
+    & .action-sheet-container {
+      & button {
+        &.action-sheet-button {
+          font-size: inherit;
+          &.location-icon-color {
+            color: #6beb98;
+          }
+          &.location-icon-color {
+            color: #6beb98;
+          }
+          &.video-icon-color {
+            color: #ed143d;
+          }
+          &.document-icon-color {
+            color: #10a5e8;
+          }
+          & ion-icon {
+            &.action-sheet-icon {
+              font-size: 2.2rem;
+              margin-right: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.image-select-actionsheet {
+  & .action-sheet-container {
+    & .action-sheet-title {
+      font-size: 1.4rem;
+    }
+    & button {
+      & [aria-label="images"] {
+        color: #06f7e2;
+      }
+
+      & [aria-label="camera"] {
+        color: #0facf3;
+      }
+      & .button-inner {
+        & ion-icon {
+          margin: 0 20px 0 0;
+          font-size: 2.1rem;
+        }
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.bg-white,
+.footer-white .toolbar-background {
+  background-color: #ffffff;
+}
+
+.no-border {
+  border: 0;
+}
+
+.color-1 {
+  color: #ff1744;
+}
+
+.color-2 {
+  color: #d500f9;
+}
+
+.color-3 {
+  color: #283593;
+}
+
+.color-4 {
+  color: #00838f;
+}
+
+.color-5 {
+  color: #37474f;
+}
+
+.color-6 {
+  color: #e53935;
+}
+
+ion-picker-cmp {
+  div.picker-wrapper {
+    .picker-toolbar {
+      background: #222222;
+      .picker-toolbar-button {
+        button {
+          color: white;
+        }
+      }
+    }
+    background: white !important;
+    color: #222222;
+    .picker-columns {
+      .picker-opts {
+        .picker-opt {
+          color: #222222;
+          font-size: 1.6rem;
+          &.picker-opt-selected {
+            color: #ed143d;
+          }
+        }
+      }
+    }
+  }
+}
+
+ion-toast {
+  & .toast-container {
+    & .toast-message {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.theme-bg-color {
+  & .toolbar-background {
+    background-color: $background-color;
+  }
+  & button {
+    color: white;
+  }
+}
+
+.camelcase-text {
+  text-transform: capitalize;
+}

@@ -1,0 +1,100 @@
+page-create-post {
+    ion-content {
+        &.new-post-body {
+            background-color: white;
+        }
+    }
+    ion-toolbar {
+        &.post-user-detail {
+            padding: 0;
+            & .post-control-header {
+                
+                & .button-icon {
+                    vertical-align: middle;
+                    float: left;
+                    & > * {
+                        float: left;
+                    }
+                }
+                & .icon-post-planet {
+                    & button { 
+                        color: #488aff;
+                        background-color: #f0f8ff;
+                    }
+                }
+                & .icon-post-people {
+                     & button { 
+                        color: #ff1493;
+                        background-color: #f7c2de2e;
+                    }
+                }
+                & .icon-post-pin {
+                    & button { 
+                        color: #7cfc00;
+                        background-color: #e3f7d073;
+                    }
+                }
+                & .button-additional-text {
+                    margin-top: 5px;
+                    padding: 3px 5px;
+                    color: #666666;
+                    &.post-tag {
+                        font-weight: bold;
+                    }
+                }
+            }
+            & .toolbar-content {
+                & ion-item {                    
+                    padding-left: 8px;
+                    font-size: 1.3rem;
+                    background-color: white;
+                    color: #333333;
+                    & ion-avatar {
+                        position: absolute;
+                        top: -1px;
+                        margin: 8px 8px 8px 0px;
+                    }
+                    & .item-inner {
+                        border-bottom: 0;
+                        margin-left: 14%;
+                        min-height: 53px;
+                        & ion-label {
+                            margin: 8px 8px 8px 0;
+                            font-size: 1.3rem;
+                            & h2 {
+                                font-weight: 900;
+                                font-size: inherit;
+                                text-indent: 8px;
+                            }
+                            & p, & span {
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    editable-inputbox {
+        & div#contenteditable-container {
+            padding: 8px;
+            color: #222222;
+            font-size: 1.3rem;
+        }
+    }
+    .post-footer-controls {
+        & ion-toolbar {
+            & .toolbar-background {
+                background: white;
+                color: #222222;
+            }
+            & .toolbar-content {
+                & button {
+                    & ion-icon {
+                        font-size: 1.7em;
+                    }
+                }
+            }
+        }
+    }
+}

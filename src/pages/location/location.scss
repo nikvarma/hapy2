@@ -1,0 +1,65 @@
+page-location {
+  ion-content.content {
+    background-color: white;
+  }
+  ion-toolbar.search-location-toolbar {
+      & .toolbar-background {
+        background-color: transparent;
+      }
+  }
+  ion-searchbar {
+    & .searchbar-input-container {
+      & input.searchbar-input {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  ion-spinner {
+      &.spinner {
+          margin-top: 50%;
+      }
+  }
+  ion-list.location-search-list {
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    & ion-item.item {
+      background-color: #f4f4f4;
+      font-size: 1.3rem;
+      & ion-icon {
+        font-size: 1.3rem;
+        color: #222;
+        min-height: 1.3rem;
+      }
+      & .item-inner {
+        margin-left: 0;
+        & .input-wrapper {
+          & ion-label {
+            margin: 8px 8px 8px 0;
+            font-size: 1.3rem;
+            color: #222;
+          }
+        }
+      }
+    }
+  }
+  .post-location-share {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    & #map.google-map {
+      width: inherit;
+      height: inherit;
+      min-height: 500px;
+      & div.gm-style {
+        & button.gm-fullscreen-control {
+          display: none;
+        }
+        & .gm-bundled-control ~ div.gmnoprint, & .gm-bundled-control.gm-bundled-control-on-bottom {
+          display: none;
+        }
+      }
+    }
+  }
+}

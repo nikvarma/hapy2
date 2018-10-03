@@ -1,0 +1,102 @@
+<ion-content scroll="false">
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo">
+      <img src="assets/img/draw/hapy-logo.png" *ngIf="!profiledefaultimage" />
+      <img [src]="userProfileImage" class="profileimg" *ngIf="profiledefaultimage" />
+      <div *ngIf="profiledefaultimage" class="camera-btn">
+        <button ion-button color="full-light" clear (click)="openBox()">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="splash-intro">
+      {{ 'WELCOME_INTRO' | translate }}
+    </div>
+  </div>
+  <div padding>
+    <!-- <button color="light-dark" ion-button block (click)="signup()">{{ 'SIGNUP' | translate }}</button> -->
+    <div [formGroup]="userDataForm" class="login-form">
+
+      <ion-slides>
+        <ion-slide>
+          <ion-list>
+            <ion-item>
+              <ion-label floating>{{ 'COUNTRY' | translate }}</ion-label>
+              <ion-select name="ddlcountry" formControlName="ddlcountry">
+                <ion-option *ngFor="let item of countryList" value="{{ item.callingCodes }}">{{ item.name }} (+ {{
+                  item.callingCodes }})</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>{{ 'MOBILENUMBER' | translate }}</ion-label>
+              <ion-input type="number" name="txtmobilenumber" formControlName="txtmobilenumber" (keyup.enter)="enterClick($event)"></ion-input>
+            </ion-item>
+
+            <div padding-bottom padding-left padding-top>
+              <button ion-button class="login-btn" [disabled]="isBtnClicked" color="light-dark" (click)="doSendOTP($event)"
+                (keyup.enter)="enterClick($event)" block>
+                {{ 'SENDOTP_BUTTON' | translate }}
+                <ion-spinner class="button-spinner white-spinner" margin *ngIf="loadingspinner"></ion-spinner>
+              </button>
+            </div>
+
+
+          </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+          <ion-list>
+
+            <ion-item>
+              <ion-label floating>{{ 'MOBILENUMBER' | translate }}</ion-label>
+              <ion-input type="text" name="txtmobilenumber_sec" value="{{ txtmobilenumber_sec }}" readonly></ion-input>
+              <button ion-button item-end clear small class="edit-small-btn">
+                <ion-icon small name="create" (click)="editMobileNumber()"></ion-icon>
+              </button>
+            </ion-item>
+
+            <ion-item>
+              <ion-label floating>{{ 'VERIFY_OTP' | translate }}</ion-label>
+              <ion-input type="number" name="txtverifyotp" formControlName="txtverifyotp" (keyup.enter)="enterClick($event)"></ion-input>
+            </ion-item>
+
+            <div padding-bottom padding-left padding-top>
+              <button ion-button class="login-btn" color="light-dark" [disabled]="isBtnClicked" (click)="doVerify()" (keyup.enter)="enterClick($event)"
+                block>{{ 'VERIFYOTP_BUTTON' | translate }}
+                <ion-spinner class="button-spinner white-spinner" margin *ngIf="loadingspinner"></ion-spinner>
+              </button>
+            </div>
+          </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+          <ion-list>
+
+            <ion-item>
+              <ion-label stacked>{{ 'USERNAME' | translate }}</ion-label>
+              <ion-input type="text" name="txtusername" (keyup.enter)="enterClick($event)" formControlName="txtusername"></ion-input>
+            </ion-item>
+
+            <ion-item item-multiple-input>
+              <ion-label stacked>{{ 'DOB' | translate }}</ion-label>
+              <ion-datetime displayFormat="YYYY-MM-DD" formControlName="txtdob" min="1940" max="2012-11-12"
+                (keyup.enter)="enterClick($event)" name="txtdob" pickerFormat="DD MM YYYY"></ion-datetime>
+            </ion-item>
+
+            <div padding-bottom padding-left padding-top>
+              <button ion-button class="login-btn" color="light-dark" [disabled]="isBtnClicked" (click)="goToHome()" (keyup.enter)="enterClick($event)"
+                block>{{ 'CONTINUE_BUTTON' | translate }}
+                <ion-spinner class="button-spinner white-spinner" margin *ngIf="loadingspinner"></ion-spinner>
+              </button>
+            </div>
+          </ion-list>
+        </ion-slide>
+
+      </ion-slides>
+
+    </div>
+    <!-- <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button> -->
+  </div>
+</ion-content>

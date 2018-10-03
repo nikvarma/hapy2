@@ -1,0 +1,54 @@
+page-contact-list {
+    ion-header {
+        ion-searchbar {
+            &.contactlist-searchbar {
+                padding: 5px;
+                font-size: 1.3rem;  
+                & .searchbar-input {
+                    font-size: inherit;
+                }              
+            }
+        }
+    }
+
+    ion-item-sliding {
+        & button.item {
+            background-color: #fff;
+            & ion-avatar[item-start] {
+                margin: 5px 8px 5px 0;
+                & img {
+                    height: 45px;
+                    width: 45px;
+                }
+            }
+            ion-badge {
+                padding: 10px 10px;
+                border-radius: 20px;
+                font-weight: normal;
+                &[item-end] {
+                    font-size: 1.2rem;
+                    background-color: #ed143d;
+                    & ion-note {
+                        color: white;
+                    }
+                }
+            }
+            & .item-inner {
+                border-bottom: 1px solid rgba(158, 158, 158, 0.2);
+                & .input-wrapper {
+                    & ion-label {
+                        margin: 8px 8px 8px 0;
+                        font-size: 1.4rem;
+                        & h2 {
+                            color: #333333;
+                            font-size: inherit;
+                        }
+                        & p {
+                            font-size: calc(100% - 2px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+page-tutorial {
+  ion-navbar.toolbar div.toolbar-background {
+    background: #222222;
+    border-color: transparent;
+  }
+
+  .scroll-content {
+    background-color: $background-color;
+    color: white;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-title {
+    margin-top: 2.8rem;
+  }
+
+  .slide-image {
+    max-height: 40%;
+    max-width: 60%;
+    margin: 36px 0;
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: white;
+
+    b {
+      color: #000000;
+    }
+  }
+  .button-clear {
+    .button-inner {
+      color: #af0a29;
+    }
+  }
+
+  .slide_0 {
+    background-color: white;
+    &::after {
+      background-color: white;
+    }
+  }
+  .slide_1 {
+    background-color: #fac53a;
+    &::after {
+      background-color: #fac53a;
+    }
+  }
+  .slide_2 {
+    background-color: #f68f1f;
+    &::after {
+      background-color: #f68f1f;
+    }
+  }
+  .slide_0,
+  .slide_1,
+  .slide_2 {
+    position: relative;
+    &::after, &::before {
+      content: "";
+      position: absolute;
+      height: 25px;
+      width: 10%;
+    }
+    &::after {  
+      border-radius: 0px 0px 20px 20px;
+      margin: auto 30%;
+    }
+    &::before {  
+      border-radius: 20px 20px 0px 0px;
+      background-color: $background-color;
+      margin: auto 10%;
+      bottom: 0;
+    }
+    .slide-image {
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto auto;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #000000;
+  }
+}

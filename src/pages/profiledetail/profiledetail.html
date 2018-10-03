@@ -1,0 +1,229 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button clear (click)="close()">
+        <ion-icon name="arrow-back" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Edit Profile</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <input type="hidden" hidden [ngModel]="userId" />
+
+  <form [formGroup]="userDetails">
+
+
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-icon item-start small name="contact"></ion-icon>
+        Basic Info
+        <button [disabled]="disabledBtn" item-end ion-button end class="header-save-btn" clear (click)="saveUserInfo()">
+          Save
+          <ion-spinner small *ngIf="!saveinfohidespinner" color="full-light" margin-left name="dots"></ion-spinner>
+        </button>
+      </ion-item-divider>
+      <div *ngIf="!isProfileSettingsLoad" padding text-center class="bg-white">
+        <ion-spinner item-center color="danger" name="bubbles"></ion-spinner>
+      </div>
+      <ng-container *ngIf="isProfileSettingsLoad">
+        <ion-item>
+          <ion-label stacked>Name</ion-label>
+          <ion-input type="text" name="txtusername" formControlName="txtusername"></ion-input>
+        </ion-item>
+
+
+
+        <ion-item item-multiple-input>
+          <ion-label stacked>DOB</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" formControlName="txtdob" min="1940" max="2012-11-12" name="txtdob"
+            pickerFormat="DD MM YYYY"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Gender</ion-label>
+          <ion-select name="txtgender" formControlName="txtgender">
+            <ion-option value="Female">Female</ion-option>
+            <ion-option value="Male">Male</ion-option>
+          </ion-select>
+        </ion-item>
+
+      </ng-container>
+    </ion-item-group>
+
+
+    <ion-item-group formGroupName="about">
+      <ion-item-divider color="light">
+        <ion-icon name="information-circle" small item-start></ion-icon>
+        About
+        <button item-end [disabled]="disabledBtn" ion-button end class="header-save-btn" (click)="saveAbout()" clear>
+          Save
+          <ion-spinner small *ngIf="!saveabouthidespinner" color="full-light" margin-left name="dots"></ion-spinner>
+        </button>
+      </ion-item-divider>
+      <div *ngIf="!isAboutSettingsLoad" padding text-center class="bg-white">
+        <ion-spinner item-center color="danger" name="bubbles"></ion-spinner>
+      </div>
+      <ng-container *ngIf="isAboutSettingsLoad">
+        <ion-item>
+          <ion-label stacked>Status</ion-label>
+          <ion-input type="text" name="txtstatus" formControlName="txtstatus"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>About</ion-label>
+          <ion-textarea type="text" name="txtabout" formControlName="txtabout"></ion-textarea>
+        </ion-item>
+      </ng-container>
+    </ion-item-group>
+
+    <ion-item-group formGroupName="placelived">
+      <ion-item-divider color="light">
+        <ion-icon name="home" small item-start></ion-icon>
+        Places Lived
+        <button item-end [disabled]="disabledBtn" ion-button class="header-save-btn" (click)="saveplacelived()" clear>
+          Save
+          <ion-spinner small *ngIf="!saveplacelivedhidespinner" color="full-light" margin-left name="dots"></ion-spinner>
+        </button>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label stacked>Country</ion-label>
+        <ion-input type="text" name="txtplaceslivedcountry" formControlName="txtplaceslivedcountry"></ion-input>
+        <button ion-button item-end small clear color="danger" (click)="openUserMap()">
+          <ion-icon name="locate"></ion-icon>
+        </button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>State</ion-label>
+        <ion-input type="text" name="txtplaceslivedtxtstate" formControlName="txtplaceslivedtxtstate"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>City</ion-label>
+        <ion-input type="text" name="txtplaceslivedcity" formControlName="txtplaceslivedcity"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Street</ion-label>
+        <ion-input type="text" name="txtplaceslivedtxtstreet" formControlName="txtplaceslivedtxtstreet"></ion-input>
+      </ion-item>
+
+    </ion-item-group>
+    <div *ngIf="!isPlaceSettingsLoad" padding text-center class="bg-white">
+      <ion-spinner item-center color="danger" name="bubbles"></ion-spinner>
+    </div>
+
+    <ion-list *ngIf="isPlaceSettingsLoad">
+      <ion-item-sliding *ngFor="let item of userLocList;">
+        <ion-item class="user-profile-place-wrok-list">
+          <ion-avatar item-start>
+            <button clear round ion-button padding>{{ item.state.charAt(0) }}</button>
+          </ion-avatar>
+          <h2>
+            <ng-container *ngIf="item.city">
+              {{ item.city }}
+            </ng-container>
+            <ng-container *ngIf="item.state">
+              {{ item.state }}
+            </ng-container>
+            <ng-container *ngIf="item.country">
+              {{ item.country }}
+            </ng-container>
+          </h2>
+          <p>
+            {{ item.address }}
+          </p>
+
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="full-light" (click)="deleteLocation(item.id)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+
+    <ion-item-group formGroupName="compdetail">
+      <ion-item-divider color="light">
+        <ion-icon item-start small name="briefcase"></ion-icon>
+        Work
+        <button item-end [disabled]="disabledBtn" ion-button class="header-save-btn" (click)="saveUserComp()" clear>
+          Save
+          <ion-spinner small *ngIf="!saveworkedhidespinner" color="full-light" margin-left name="dots"></ion-spinner>
+        </button>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" name="txtcompname" formControlName="txtcompname"></ion-input>
+        <button ion-button item-end small clear color="danger" (click)="openCompMap()">
+          <ion-icon name="locate"></ion-icon>
+        </button>
+      </ion-item>
+      <ion-item item-multiple-input>
+        <ion-label stacked>Start</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" formControlName="txtcompnamestartdate" min="1940" name="txtcompnamestartdate"
+          pickerFormat="DD MM YYYY"></ion-datetime>
+        <ion-icon item-end small color="danger" margin name="calendar"></ion-icon>
+      </ion-item>
+      <ion-item item-multiple-input>
+        <ion-label stacked>End</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" formControlName="txtcompnameenddate" min="1940" name="txtcompnameenddate"
+          pickerFormat="DD MM YYYY"></ion-datetime>
+        <ion-icon item-end small color="danger" margin name="calendar"></ion-icon>
+      </ion-item>
+
+      <!-- <ion-item>
+        <ion-label stacked>Location</ion-label>
+        <ion-input type="text" name="txtcomplocation" formControlName="txtcomplocation"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Status</ion-label>
+        <ion-input type="text" name="txtcompstatus" formControlName="txtcompstatus"></ion-input>
+      </ion-item> -->
+
+
+    </ion-item-group>
+    <div *ngIf="!isWorkSettingsLoad" padding text-center class="bg-white">
+      <ion-spinner item-center color="danger" name="bubbles"></ion-spinner>
+    </div>
+    <ion-list *ngIf="isWorkSettingsLoad">
+      <ion-item-sliding *ngFor="let item of userComList;">
+        <ion-item class="user-profile-place-wrok-list">
+          <ion-avatar item-start>
+            <button clear round ion-button padding>{{ item.compDetail[0].name.charAt(0) }}</button>
+          </ion-avatar>
+          <h2>
+            {{ item.compDetail[0].name }}
+          </h2>
+          <p>
+            {{ item.compDetail[0]?.location[0]?.address }} {{ item.compDetail[0]?.location[0]?.country }}
+          </p>
+          <p>
+            <ion-note>
+              <ion-icon name="calendar" small></ion-icon>
+              From: {{ item.startdate }}
+            </ion-note>
+            &nbsp;
+            <ion-note>
+              <ion-icon name="calendar" small></ion-icon>
+              To: {{ item.enddate }}
+            </ion-note>
+          </p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="full-light" (click)="deleteWorkLocation(item.id)">
+            <ion-icon name="trash"></ion-icon>
+
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </form>
+</ion-content>

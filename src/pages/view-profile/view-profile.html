@@ -1,0 +1,324 @@
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-buttons left (click)="close()">
+      <button ion-button clear>
+        <ion-icon name="arrow-back" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <!-- <ion-buttons end (click)="searchBox($event)">
+      <button ion-button clear>
+        <ion-icon name="search" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons> -->
+
+    <ion-buttons end (click)="moreOption($event)">
+      <button ion-button clear>
+        <ion-icon name="more" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- <ion-toolbar class="search-bar">
+    <ion-searchbar (ionInput)="getItems($event)" class="call-searchbar"></ion-searchbar>
+  </ion-toolbar> -->
+
+  <ion-card>
+    <img src="assets/img/advance-card-tmntr.jpg" />
+
+    <div class="user-profile-message-call">
+      <ion-buttons end (click)="sendMessage($event)" *ngIf="userId != userDetail?.user?.uid">
+
+        <button ion-button clear>
+          <ion-icon name="text" showWhen="core,android,windows"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+
+    <ion-item class="profile">
+      <ion-avatar item-start>
+        <img [src]="userDetail?.user?.uprofileimage" *ngIf="userDetail?.user?.uprofileimage">
+        <img src="assets/img/avatar-profile-picture-default-i.jpg" *ngIf="!userDetail?.user?.uprofileimage">
+      </ion-avatar>
+      <h2>
+        {{ userDetail?.user.name }}
+      </h2>
+      <p>
+        <ion-note class="font-1-1">
+          Following <span>10</span>
+        </ion-note>
+      </p>
+      <ion-buttons item-end (click)="addFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && userDetail?.user?.friend?.tid.toLowerCase() != userId && userDetail?.user?.friend?.fid == undefined && !sendFriendRequestSpinner">
+        <button ion-button small clear round class="addfriend camelcase-text">
+          <ion-icon name="add" showWhen="core,android,windows"></ion-icon>
+          Connect
+        </button>
+      </ion-buttons>
+
+      <ion-buttons item-end (click)="unFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && userDetail?.user?.friend?.isaccpted && (userDetail?.user?.friend?.fid.toLowerCase() == userId.toLowerCase() || userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase()) && !sendFriendRequestSpinner">
+        <button ion-button small clear round class="addfriend camelcase-text">
+          <ion-icon color="danger" name="remove-circle"></ion-icon>
+          Disconnect
+        </button>
+      </ion-buttons>
+
+      <ion-buttons item-end (click)="accpetFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && !userDetail?.user?.friend?.isaccpted && userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase() && !sendFriendRequestSpinner">
+        <button ion-button small clear round class="addfriend camelcase-text">
+          <ion-icon name="contacts"></ion-icon>
+          Accpet
+        </button>
+      </ion-buttons>
+
+      <ion-spinner name="bubbles" color="danger" item-end *ngIf="sendFriendRequestSpinner"></ion-spinner>
+
+
+    </ion-item>
+
+    <!-- <ion-card-content>
+      <ion-card-title text-center>
+        Nine Inch Nails Live
+      </ion-card-title>
+      <p>
+        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+      </p>
+    </ion-card-content> -->
+  </ion-card>
+
+  <div no-padding>
+    <ion-segment color="white" [(ngModel)]="profileuserinfocontrols" (ionChange)="loadContent()" class="profile-user-info-control">
+      <ion-segment-button value="Post">
+        Post
+      </ion-segment-button>
+      <ion-segment-button value="Friends">
+        Friends
+      </ion-segment-button>
+      <ion-segment-button value="Info">
+        Info
+      </ion-segment-button>
+      <ion-segment-button value="Videos">
+        Videos
+      </ion-segment-button>
+      <ion-segment-button value="Images">
+        Images
+      </ion-segment-button>
+      <ion-segment-button value="Events">
+        Events
+      </ion-segment-button>
+      <!-- <ion-segment-button value="Others">
+        Others
+      </ion-segment-button> -->
+    </ion-segment>
+
+  </div>
+
+  <div [ngSwitch]="profileuserinfocontrols">
+    <ion-list *ngSwitchCase="'Post'" class="user-profile-post">
+      <ion-list-header color="full-light">
+        Post
+      </ion-list-header>
+      <ion-item class="profile" *ngIf="userDetail?.user?.friend?.fid.toLowerCase() == userId.toLowerCase() && userDetail?.user?.friend?.isrequestaccpted">
+        <ion-avatar item-start>
+          <img src="assets/img/avatar-profile-picture-default-i.jpg" *ngIf="!loggedUserDetail?.profileImage">
+          <img [src]="loggedUserDetail?.profileImage" *ngIf="loggedUserDetail?.profileImage">
+        </ion-avatar>
+        <h2 clear class="camelcase-text width-full-flex-left" color="light-dark" (click)="newPost()" ion-button>Write
+          something on&nbsp;
+          <strong>
+            {{ userDetail?.user.name }}
+          </strong>&nbsp;wall
+        </h2>
+        <p>
+
+          <button class="camelcase-text cal-icon-color" color="danger" ion-button clear item-end icon-start>
+            <ion-icon name="megaphone"></ion-icon>
+            Write
+          </button>
+
+          <button class="camelcase-text" color="danger" ion-button item-end clear icon-start>
+            <ion-icon name="images"></ion-icon>
+            Images
+          </button>
+
+          <button class="camelcase-text chat-icon-color" color="danger" clear ion-button item-end icon-start>
+            <ion-icon name="videocam"></ion-icon>
+            Videos
+          </button>
+
+        </p>
+      </ion-item>
+
+      <ion-item *ngIf="postList" class="bg-white font-1-3 color-5" text-center>
+        <ion-note>No Post available to display</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Friends'" class="user-profile-post">
+
+      <ion-list-header color="full-light">
+        Connections
+      </ion-list-header>
+      <ion-item class="bg-white font-1-3 color-5" text-center>
+        <ion-note>No friend list available.</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ng-container *ngSwitchCase="'Info'">
+
+
+      <ion-list class="user-profile-post user-info">
+
+        <ion-list-header color="full-light" class="user-profile-basicinfo">
+          <ion-icon name="information-circle"></ion-icon> Basic Info
+        </ion-list-header>
+
+        <div item-center *ngIf="!isUserInfoSettingsLoad">
+          <ion-spinner name="bubbles" color="danger"></ion-spinner>
+        </div>
+
+
+        <ion-item class="user-profile-basicinfo-list" *ngIf="userInfo?.name">
+          Name
+          <ion-note item-end>{{userInfo?.name}}</ion-note>
+        </ion-item>
+
+        <ion-item class="user-profile-basicinfo-list" *ngIf="userInfo?.dob">
+          Date Of Birth
+          <ion-note item-end>
+            {{ userInfo?.dob }}
+          </ion-note>
+        </ion-item>
+        <ion-item class="user-profile-basicinfo-list" *ngIf="userInfo?.primarynumber">
+          Contact #
+          <ion-note item-end>
+            {{ userInfo?.primarynumbercode }} {{ userInfo?.primarynumber }}
+          </ion-note>
+        </ion-item>
+        <ion-item class="user-profile-basicinfo-list" *ngIf="userInfo?.about">
+
+          Status
+          <p>
+            {{ userInfo?.about }}
+          </p>
+        </ion-item>
+        <ion-item class="user-profile-basicinfo-list" *ngIf="userInfo?.desc">
+          Description
+          <p>
+            {{ userInfo?.desc }}
+          </p>
+        </ion-item>
+
+      </ion-list>
+
+
+      <ion-list class="user-profile-post user-info">
+        <ion-list-header color="full-light" class="user-profile-placeslived">
+          <ion-icon name="home"></ion-icon> Places Lived
+        </ion-list-header>
+
+        <div item-center *ngIf="!isPlaceSettingsLoad">
+          <ion-spinner name="bubbles" color="danger"></ion-spinner>
+        </div>
+
+        <ion-item class="user-profile-placedlivedlist" *ngFor="let item of userLocList;">
+          <ion-avatar item-start class="round-center">
+            <!-- <img src="assets/img/advance-card-tmntr.jpg"> -->
+            {{ item.state.charAt(0) }}
+          </ion-avatar>
+
+          <h2>
+            <ng-container *ngIf="item.city">
+              {{ item.city }}
+            </ng-container>
+            <ng-container *ngIf="item.state">
+              {{ item.state }}
+            </ng-container>
+            <ng-container *ngIf="item.country">
+              {{ item.country }}
+            </ng-container>
+          </h2>
+          <p>
+            {{ item.address }}
+          </p>
+
+        </ion-item>
+
+      </ion-list>
+
+      <ion-list class="user-profile-post user-info">
+        <ion-list-header color="full-light" class="user-profile-work">
+          <ion-icon name="briefcase"></ion-icon> Work
+        </ion-list-header>
+
+        <div item-center *ngIf="!isWorkSettingsLoad">
+          <ion-spinner name="bubbles" color="danger"></ion-spinner>
+        </div>
+
+        <ion-item class="user-profile-work-list" *ngFor="let item of userCompList;">
+          <ion-avatar item-start class="round-center">
+            <!-- <img src="assets/img/avatar-profile-picture-default-i.jpg" *ngIf="!loggedUserDetail?.profileImage">
+            <img [src]="loggedUserDetail?.profileImage" *ngIf="loggedUserDetail?.profileImage"> -->
+            {{ item.compDetail[0].name.charAt(0) }}
+          </ion-avatar>
+
+          <h2>
+            {{ item.compDetail[0].name }}
+          </h2>
+          <p>
+            {{ item.compDetail[0]?.location[0]?.address }} {{ item.compDetail[0]?.location[0]?.country }}
+          </p>
+          <p>
+            <ion-note>
+              <ion-icon name="calendar" small></ion-icon>
+              From: {{ item.startdate }}
+            </ion-note>
+            &nbsp;
+            <ion-note>
+              <ion-icon name="calendar" small></ion-icon>
+              To: {{ item.enddate }}
+            </ion-note>
+          </p>
+
+        </ion-item>
+
+      </ion-list>
+    </ng-container>
+
+
+    <ion-list *ngSwitchCase="'Images'" class="user-profile-post">
+      <ion-list-header color="full-light">
+        Images
+      </ion-list-header>
+      <ion-item class="bg-white font-1-3 color-5" text-center>
+        <ion-note>No images found</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Videos'" class="user-profile-post">
+      <ion-list-header color="full-light">
+        Videos
+      </ion-list-header>
+      <ion-item class="bg-white font-1-3 color-5" text-center>
+        <ion-note>No videos clip found</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Events'" class="user-profile-post">
+      <ion-list-header color="full-light">
+        Events
+      </ion-list-header>
+      <ion-item class="bg-white font-1-3 color-5" text-center>
+        <ion-note>No events found</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <!-- <ion-list *ngSwitchCase="'Others'" class="user-profile-post">
+
+    </ion-list> -->
+
+  </div>
+</ion-content>

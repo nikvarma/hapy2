@@ -1,0 +1,213 @@
+page-chat-box {
+  ion-navbar {
+    & .toolbar-content {
+      & .toolbar-title {
+        padding: 0 0;
+        & .header-info {
+          & ion-avatar[item-start] {
+            margin: 5px 8px 5px 8px;
+            & img {
+              width: 45px;
+              height: 45px;
+            }
+          }
+          padding-left: 0;
+          & .item-inner {
+            border-bottom: 0;
+            & ion-label {
+              margin: 0 8px 0 0;
+              & p {
+                color: white;
+                & .status {
+                  &.online {
+                    color: white;
+                  }
+                  font-size: 1.1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .header-info {
+  }
+
+  ion-footer {
+    & ion-toolbar.toolbar {
+      & .toolbar-background {
+        background-color: #ed143d;
+      }
+      min-height: 50px;
+      & ion-buttons {
+        & ion-icon {
+          color: white;
+        }
+      }
+    }
+    & .message-inputtext-box {
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.5);
+      & textarea {
+        width: 100%;
+        margin: 0;
+        height: 32px;
+        color: #444444;
+        font-size: 1.3rem;
+        padding: 8px 10px;
+        border-radius: 20px;
+        background: white;
+      }
+    }
+  }
+
+  ion-content {
+    &.content {
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-image: url("../../assets/img/speakers/bg.svg");
+    }
+    & ion-list {
+      &.chat-list {
+        & .chatmessagebox {
+          margin-bottom: 10px;
+          position: relative;
+          &::after {
+            width: 20px;
+            height: 10px;
+            content: "";
+            bottom: -10px;
+            position: absolute;
+            background-color: #f53d3dcf;
+            border-radius: 20px 0 20px 0px;
+          }
+          &:last-child {
+            margin-bottom: 20px;
+          }
+          &.chatmessagebox-to {
+            &::after {
+              left: -10px;
+              border-radius: 20px 0 20px 0px;
+            }
+          }
+          &.chatmessagebox-me {
+            display: flex;//
+            justify-content: flex-end;//
+            & ion-item {
+              border-radius: 20px 20px 0px 20px;
+            }
+            &::after {
+              right: -10px;
+              border-radius: 0px 20px 0 20px;
+            }
+          }
+        }
+
+        min-height: 100%;
+        margin: 10px;
+        & ion-item {
+          border-radius: 50px 0px;
+          position: relative;
+
+          & ion-avatar[item-start] {
+            margin: 0px 8px 0px 0;
+            position: absolute;
+            top: 8px;
+            & img {
+              min-width: 30px;
+              min-height: 30px;
+              width: 30px;
+              height: 30px;
+            }
+          }
+
+          &.chat-item {
+            width: auto;//
+            min-width: 47%;//
+            background-color: #f53d3dcf;
+            border-radius: 20px 20px 20px 0px;
+            padding-left: 8px;
+            & .item-inner {
+              position: relative;
+              padding: 0px;
+              border-bottom: 0;
+              text-indent: 40px;
+              & .label {
+                color: white;
+                font-weight: 500;
+
+                & .chat-tousername {
+                  margin: 0;
+                  font-size: 1.3rem;
+                  padding: 0 45px 0 0;
+                }
+                & .chat-text {
+                  font-size: 1.3rem;
+                  color: white;
+                  font-weight: initial;
+                  white-space: normal;
+                  margin-top: 10px;
+                }
+                & .chat-image {
+                  width: 100%;
+                  position: relative;
+                  overflow: hidden;
+                  & img {
+                    max-width: 230px;
+                    border-radius: 10%;
+                  }
+                  & .content-text-overlap {
+                    color: white;
+                    position: absolute;
+                    bottom: 3px;
+                    width: 233px;
+                    padding: 5px;
+                    border-radius: 0px 0px 25px 24px;
+                    text-align: center;
+                    margin: 0px 14.5%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                  }
+                }
+                & .delivertime,
+                & .deliverstatus {
+                  position: absolute;
+                  top: 13px;
+                  right: 15px;
+                  & .msg-block {
+                    & ion-icon.icon {
+                      font-size: 1em;
+                    }
+                    & .text {
+                      font-size: 1.1rem;
+                      position: relative;
+                      top: -2px;
+                    }
+                  }
+                }
+                & .deliverstatus {
+                  bottom: 0px;
+                  top: initial;
+                  right: 5px;
+                }
+              }
+            }
+          }
+        }
+        & .chat-shawdo {
+        }
+      }
+    }
+  }
+
+  ion-toolbar.control-baseline {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 9px;
+  }
+
+  .chatbox-share-things {
+    font-size: 1.3rem;
+  }
+}

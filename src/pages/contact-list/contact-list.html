@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <!-- <ion-title>contact-list</ion-title> -->
+    <ion-searchbar (ionInput)="getItems($event)" class="contactlist-searchbar" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="bg-white">
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of currentItems">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start>
+          <img [src]="item.profilePic" />
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>{{item.about}}</p>
+        <ion-badge *ngIf="item.note" item-end>
+          <ion-note>{{item.note}}</ion-note>
+        </ion-badge>
+      </button>
+
+      <ion-item-options side="left">
+        <button ion-button round large color="danger" (click)="deleteItem(item)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button large color="secondary" (click)="deleteItem(item)">
+          <ion-icon name="call"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="theme-bg-color">
+  <ion-toolbar text-right>    
+    <button ion-button clear small (click)="contactList()">
+      Ok
+    </button>
+  </ion-toolbar>
+</ion-footer>

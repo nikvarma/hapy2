@@ -1,0 +1,68 @@
+page-profiledetail {
+  ion-navbar {
+    & div.toolbar-content {
+      & .toolbar-title {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .user-profile-place-wrok-list {
+    &.item {
+      padding-left: 8px;
+    }
+    & ion-avatar {
+      &[item-start] {
+        margin: 8px 8px 8px 0px;
+        min-width: 45px;
+        min-height: 45px;
+        & button {
+          height: 4rem;
+          background-color: #f4f4f4;
+        }
+      }
+    }
+    & div.item-inner {
+      & ion-label.label {
+        margin: 8px 8px 8px 0px;
+        & h2 {
+          font-size: 1.3rem;
+        }
+        & p {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+  ion-item-sliding {
+    &.item-wrapper {
+      background-color: white;
+      & ion-item {
+        color: #222222;
+        background-color: inherit;
+      }
+    }
+  }
+  ion-item-group {
+    & ion-item-divider.item-divider {
+      & ion-icon[item-start] + .item-inner {
+        margin-left: 5px;
+      }
+      & .item-inner {
+        margin-left: 5px;
+      }
+    }
+    & .header-save-btn {
+      color: white;
+      background-color: #ed143d;
+    }
+    & ion-item.item {
+      color: #222222;
+      font-size: 1.3rem;
+      background-color: white;
+      & .item-inner {
+        border-bottom-color: #dedede !important;
+        box-shadow: initial !important;
+      }
+    }
+  }
+}

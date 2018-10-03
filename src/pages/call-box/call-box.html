@@ -1,0 +1,75 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="call-shawdo"></div>
+  <div class="call-box">
+    <div class="call-box-header">
+      <div class="user-picture">
+        <img src="assets/img/marty-avatar.png" />
+      </div>
+      <div class="user-info">
+
+        <div class="location">
+          India, Mumbai
+        </div>
+        <div class="number">
+          +91 8898937976
+        </div>
+        <div class="name">
+          <h2>Nik Varma</h2>
+        </div>
+        <div class="call-timer">
+          <span>00:30:30</span>
+        </div>
+      </div>
+    </div>
+    <div class="call-box-body">
+      <div class="controls">
+        <div class="started-option-controls">
+          <div class="handsfree-call-control call-control">
+            <button ion-button icon-only clear>
+              <ion-icon name="volume-up"></ion-icon>
+            </button>
+          </div>
+          <div class="swap-call-control call-control">
+            <button ion-button icon-only clear>
+              <ion-icon name="swap"></ion-icon>
+            </button>
+          </div>
+          <div class="mute-call-control call-control">
+            <button ion-button icon-only clear>
+              <ion-icon name="mic-off"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="call-box-footer">
+      <div class="controls">
+        <div class="start-end-control">
+          <div class="connect-call-control call-control">
+            <button ion-button icon-only clear>
+              <ion-icon name="call" class="active"></ion-icon>
+            </button>
+          </div>
+          <div class="disconnect-call-control call-control">
+            <button ion-button icon-only clear (click)="closeCall()">
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <input type="text" #peerkey id="peerkey" />
+  <video id="videoCallBox" #videoCallBox muted="true" autoplay playsinline></video>
+
+
+  <button (click)="startVideo()">Start</button>
+</ion-content>

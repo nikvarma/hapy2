@@ -1,0 +1,105 @@
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-buttons left>
+      <button ion-button>
+        <ion-icon name="camera" class="icon-post-camera" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Hapy</ion-title>
+
+    <ion-buttons start>
+      <button ion-button id="notification-button">
+        <ion-icon name="notifications" class="icon-post-notification" showWhen="android,windows">
+          <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="newPost()">
+      <button ion-button strong>
+        <ion-icon name="paper-plane" class="icon-post-post" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="white-gb">
+  <ion-refresher (ionRefresh)="doRefresh($event)" color="full-light">
+    <ion-refresher-content color="full-light"></ion-refresher-content>
+  </ion-refresher>
+  <!-- <ion-toolbar>
+    <ion-title>Scrolls with the content</ion-title>
+  </ion-toolbar> -->
+
+  <ion-card *ngFor="let item of cardItems" [@fadeInOut]>
+
+    <ion-item>
+      <ion-avatar item-start (click)="openProfile()">
+        <img [src]="item.user.avatar">
+      </ion-avatar>
+      <h2 (click)="openProfile()">{{item.user.name}}</h2>
+      <p>
+        <span>{{item.date}}</span>
+      </p>
+
+      <ion-note item-end class="icon-post-top-clock">
+        11h ago
+      </ion-note>
+    </ion-item>
+
+    <ion-card-content>
+      <p>{{item.content}}</p>
+    </ion-card-content>
+
+    <img [src]="item.image">
+
+    <ion-row>
+      <ion-col>
+        <button ion-button color="primary" clear small icon-start>
+          <ion-icon class="icon-post-like" name='thumbs-up'></ion-icon>
+          <ion-note>12</ion-note>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="primary" clear small icon-start>
+          <ion-icon class="icon-post-comment" name='text'></ion-icon>
+          <ion-note>4</ion-note>
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button color="primary" clear small icon-start>
+          <ion-icon class="icon-post-share" name='share-alt'></ion-icon>
+          <ion-note>
+            11
+          </ion-note>
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button color="primary" clear small icon-start>
+          <ion-icon class="icon-post-view" name='eye'></ion-icon>
+          <ion-note>
+            11
+          </ion-note>
+        </button>
+      </ion-col>
+      <!-- <ion-col text-center>
+          <button ion-button color="primary" clear small icon-start>
+            <ion-icon class="icon-post-clock" name='clock'></ion-icon>
+            <ion-note>
+              11h ago
+            </ion-note>
+          </button>
+        </ion-col> -->
+    </ion-row>
+  </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

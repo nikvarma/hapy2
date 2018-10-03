@@ -1,0 +1,45 @@
+<ion-header>
+
+  <!-- <ion-navbar>
+    <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
+  </ion-navbar> -->
+
+  <ion-searchbar [(ngModel)]="searchText" class="searchbar" [formControl]="debounceTimeSearch" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+  </ion-searchbar>
+  <ion-spinner *ngIf="isSearching" class="searchbox-spinner" name="bubbles" color="danger"></ion-spinner>
+</ion-header>
+
+
+<ion-content class="white-bg">
+
+  <ion-list>
+    <ng-container *ngFor="let item of searchList; let i = index">
+
+      <button ion-item (click)="openProfile(i)" *ngIf="item.user.friend == undefined || item.user?.friend?.isblocked == false">
+        <ion-avatar item-start>
+          <img [src]="item.user?.uprofileimage" *ngIf="item.user?.uprofileimage" />
+          <img src="assets/img/avatar-profile-picture-default-i.jpg" *ngIf="!item.user?.uprofileimage" />
+        </ion-avatar>
+        <h2>{{item.user?.name}}</h2>
+        <p>{{item.user?.about}}</p>
+
+        <button ion-button clear item-end *ngIf="item.user?.friend?.fid?.toLowerCase() != userId && item.user?.friend?.tid?.toLowerCase() != userId && item.user.uid.toLowerCase() != userId.toLowerCase() && !item.user?.spinner"
+          (click)="sendFriendRequest($event, i)">
+          <ion-icon name="person-add" class="font-2-em"></ion-icon>
+        </button>
+        <button ion-button clear item-end *ngIf="(item.user?.friend?.fid?.toLowerCase() == userId.toLowerCase() || item.user?.friend?.tid?.toLowerCase() == userId.toLowerCase()) && item.user.uid.toLowerCase() != userId.toLowerCase() && !item.user?.spinner"
+          (click)="unFriendRequest($event, i)">
+          <ion-icon color="danger" class="font-2-em" name="remove-circle"></ion-icon>
+        </button>
+
+        <button ion-button clear item-end *ngIf="item.user?.friend?.fid?.toLowerCase() == userId.toLowerCase() && !item.user?.friend?.isaccpted && userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase() && item.user.uid.toLowerCase() != userId.toLowerCase() && !item.user?.spinner"
+          (click)="unFriendRequest($event, i)">
+          <ion-icon class="font-2-em" name="contacts"></ion-icon>
+        </button>
+
+        <ion-spinner name="bubbles" item-end color="danger" *ngIf="item.user?.spinner"></ion-spinner>
+
+      </button>
+    </ng-container>
+  </ion-list>
+</ion-content>

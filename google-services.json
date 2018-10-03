@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1022123729139",
+    "firebase_url": "https://movies-ba23a.firebaseio.com",
+    "project_id": "movies-ba23a",
+    "storage_bucket": "movies-ba23a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022123729139:android:53d0a82be91e5eeb",
+        "android_client_info": {
+          "package_name": "in.co.hapy.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022123729139-0lgi1hsi51g57tregbi8a57o01a1cj29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPHbfvuJmbTSbrioRbyiGtHFAOAsEvgyA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

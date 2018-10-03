@@ -1,0 +1,12 @@
+page-tabs {
+    ion-tabs.tabs {
+        .tab-button {
+            &[aria-selected=true] {
+                color: #ed143d;
+                ion-icon.tab-button-icon {
+                    color: #ed143d;
+                }
+            }
+        }
+    }
+}

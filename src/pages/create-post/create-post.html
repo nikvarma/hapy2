@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-buttons left (click)="closePost()">
+      <button ion-button clear>
+        <ion-icon name="arrow-back" class="icon-post-post" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+    <ion-title>Hapy</ion-title>
+    <ion-buttons end (click)="createPost()">
+      <button ion-button clear>
+        <ion-icon name="paper-plane" class="icon-post-post" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+  <ion-toolbar class="post-user-detail">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/ian-avatar.png">
+      </ion-avatar>
+      <h2>
+        Marty McFly
+        <span class="font-md" *ngIf="postData.smile"> - {{ postData.smile.icon }}</span>
+        <span *ngIf="postData.smile?.text"> {{ postData.smile.text }}</span>
+      </h2>
+      <div class="post-control-header">
+        <span class="icon-post-planet button-icon">
+          <button ion-button only-icon clear class="icon-button" round (click)="postViewPrivacy()">
+            <ion-icon name="planet"></ion-icon>
+          </button>
+          <span class="button-additional-text">{{ postData.viewto }}</span>
+        </span>
+        <span class="icon-post-people button-icon" *ngIf="postData.tagged">
+          <button ion-button only-icon clear class="icon-button" round>
+            <ion-icon name="people"></ion-icon>
+          </button>
+          <span class="button-additional-text post-tag" *ngFor="let tagged of postData.tagfriends">{{ tagged.name }}</span>
+        </span>
+        <span class="icon-post-pin button-icon" *ngIf="postData.location">
+          <button ion-button only-icon clear class="icon-button" round>
+            <ion-icon name="pin"></ion-icon>
+          </button>
+          <span class="button-additional-text">{{ postData.location.name }}</span>
+        </span>
+      </div>
+
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="new-post-body">
+  <editable-inputbox [elementstyle]="eleStyle" (openmodal)="openTagContactList($event)"></editable-inputbox>
+  <media-viewer [mediaurl]="mediaURL"></media-viewer>
+</ion-content>
+
+<ion-footer no-border class="post-footer-controls">
+  <ion-toolbar>
+    <button start ion-button clear icon-only (click)="openSmily()">
+      <ion-icon name="happy"></ion-icon>
+    </button>
+    <button class="location-icon-color" start ion-button clear icon-only (click)="locationBox()">
+      <ion-icon name="pin"></ion-icon>
+    </button>
+    <button start ion-button (click)="selectImage()" class="image-icon-color" clear icon-only>
+      <ion-icon name="image"></ion-icon>
+    </button>
+    <button start ion-button class="video-icon-color" clear icon-only (click)="selectVideo()">
+      <ion-icon name="videocam"></ion-icon>
+    </button>
+    <button start ion-button clear icon-only (click)="openTagContactList()">
+      <ion-icon name="contacts"></ion-icon>
+    </button>
+    <button start ion-button class="cal-icon-color" clear icon-only (click)="eventBox()">
+      <ion-icon name="calendar"></ion-icon>
+    </button>
+    <button start ion-button class="tile-icon-color" clear icon-only (click)="backgroundTile()">
+      <ion-icon name="apps"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-footer>

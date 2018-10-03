@@ -1,0 +1,41 @@
+media-viewer {
+    color: #666666;
+    .image-edit-controls {
+        background-color: #ed143d;
+        & ion-buttons {
+            & button {
+                padding: 12px;
+                //background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+            }
+        }
+    }
+
+    .video-player {
+        position: relative;
+        margin: 15px 0;
+        & .icon-delete-control {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(158, 158, 158, 0.2);
+            color: white;
+            border-radius: 20px;
+            & button {
+                color: inherit;
+                & ion-icon {
+                    color: inherit;
+                }
+            }
+        }
+    }
+    
+    canvas-box, .image-edit {
+        width: 100%;
+        height: 100%;
+        & canvas {
+            width: inherit;
+            height: inherit;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+page-subsettings {
+  ion-content {
+    & ion-list {
+      & ion-item {
+        & .item-inner {
+          color: #666;
+          
+          & ion-label.label {
+            color: inherit;
+          }
+          
+          & .select-text {
+            color: inherit;
+            font-size: 1.3rem;
+          }
+        }
+        & ion-icon[item-start].icon + div.item-inner {
+            margin-left: 12px;
+          }
+      }
+    }
+  }
+  ion-navbar.header-navbar {
+    & button {
+      &.back-button {
+        margin: 0 0.2rem;
+        min-width: initial;
+        & ion-icon.back-button-icon {
+          font-size: 1.2em;
+        }
+      }
+    }
+    & .toolbar-content {
+      & .toolbar-title {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

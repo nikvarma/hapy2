@@ -1,0 +1,21 @@
+page-create-event {
+    button {
+        & .button-inner {
+            & .small-icon {
+                font-size: 1.2em;
+            }
+        }
+    }
+    .post-event {
+        background-color: white;
+        & ion-list {
+            & ion-item {
+                & .item-inner {
+                    & ion-label {
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+page-smiley {
+    ion-content {
+        &.smliey-body {
+            background-color: white;
+            & button {
+                & .icon-smiles {
+                    font-size: 2.5rem;
+                }
+                & .smile-text {
+                    font-size: 1.1rem;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+    
+}
