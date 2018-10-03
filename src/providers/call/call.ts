@@ -45,6 +45,17 @@ export class CallProvider {
     });
   }
 
+  searchInChildArray(data: any, key: string): string {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i]["types"] != null) {
+        if (data[i]["types"].indexOf(key) > -1) {
+          return data[i]["long_name"];
+        }
+      }
+    }
+    return null;
+  }
+
   getValueByKey(keyName: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.storage

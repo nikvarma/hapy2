@@ -17,17 +17,20 @@ import {
 } from "ionic-angular";
 import { EditableInputboxDirective } from "../../directives/editable-inputbox/editable-inputbox";
 import { MediaViewerComponent } from "../../components/media-viewer/media-viewer";
+import { CallProvider } from "../../providers";
 
 @IonicPage()
 @Component({
   selector: "page-create-post",
   templateUrl: "create-post.html",
-  providers: [EditableInputboxDirective]
+  providers: [EditableInputboxDirective, CallProvider]
 })
-export class CreatePostPage implements OnInit, AfterContentInit, AfterViewInit, AfterViewChecked {
+export class CreatePostPage
+  implements OnInit, AfterContentInit, AfterViewInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     this.editableDiv.divElement.focus();
   }
+
   backgroundSetter: string;
   postData: any = {};
   mediaURL: any[] = [];
@@ -41,12 +44,11 @@ export class CreatePostPage implements OnInit, AfterContentInit, AfterViewInit, 
     public modalCtrl: ModalController,
     public viewCtrl: ViewController,
     private actionSheetCtrl: ActionSheetController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private call: CallProvider
   ) {}
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewDidLoad() {}
 
   closePost(): void {
     this.viewCtrl.dismiss();
@@ -78,9 +80,7 @@ export class CreatePostPage implements OnInit, AfterContentInit, AfterViewInit, 
     });
   }
 
-  ngAfterContentInit(): void {
-    
-  }
+  ngAfterContentInit(): void {}
 
   postViewPrivacy(): void {
     let _privacyalet = this.alertCtrl.create({
@@ -129,7 +129,12 @@ export class CreatePostPage implements OnInit, AfterContentInit, AfterViewInit, 
   }
 
   openTagContactList(): void {
-    this.modalCtrl.create("SelectcontactlistPage").present();
+    let tagContact = this.modalCtrl.create("SelectcontactlistPage");
+    tagContact.onDidDismiss(res => {
+      this.postData.tagfriends = res["cItem"];
+      console.log(this.postData.tagfriends);
+    });
+    tagContact.present();
   }
 
   openSmily(): void {
@@ -149,7 +154,19 @@ export class CreatePostPage implements OnInit, AfterContentInit, AfterViewInit, 
   }
 
   locationBox(): void {
-    this.modalCtrl.create("LocationPage").present();
+    let loc = this.modalCtrl.create("LocationPage");
+    loc.present();
+    loc.onDidDismiss(res => {
+      this.postData.location = {
+        name:
+          res["name"] == null
+            ? this.call.searchInChildArray(res.addrss_compnonet, "political")
+            : res["name"],
+        address: res.address,
+        lat: res.lat,
+        lng: res.lng
+      };
+    });
   }
 
   selectVideo(): void {

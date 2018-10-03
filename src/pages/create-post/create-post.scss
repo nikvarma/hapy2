@@ -10,6 +10,8 @@ page-create-post {
             & .post-control-header {
                 
                 & .button-icon {
+                    display: flex;
+                    align-items: baseline;
                     vertical-align: middle;
                     float: left;
                     & > * {

@@ -26,6 +26,7 @@
         Marty McFly
         <span class="font-md" *ngIf="postData.smile"> - {{ postData.smile.icon }}</span>
         <span *ngIf="postData.smile?.text"> {{ postData.smile.text }}</span>
+
       </h2>
       <div class="post-control-header">
         <span class="icon-post-planet button-icon">
@@ -34,17 +35,20 @@
           </button>
           <span class="button-additional-text">{{ postData.viewto }}</span>
         </span>
-        <span class="icon-post-people button-icon" *ngIf="postData.tagged">
+        <span class="icon-post-people button-icon" *ngIf="postData.tagfriends">
+          <strong>- with &nbsp;</strong>
           <button ion-button only-icon clear class="icon-button" round>
             <ion-icon name="people"></ion-icon>
           </button>
           <span class="button-additional-text post-tag" *ngFor="let tagged of postData.tagfriends">{{ tagged.name }}</span>
+          
         </span>
         <span class="icon-post-pin button-icon" *ngIf="postData.location">
+          <strong>- at &nbsp;</strong>
           <button ion-button only-icon clear class="icon-button" round>
             <ion-icon name="pin"></ion-icon>
           </button>
-          <span class="button-additional-text">{{ postData.location.name }}</span>
+          <span class="button-additional-text">{{ postData?.location?.name }}</span>
         </span>
       </div>
 
