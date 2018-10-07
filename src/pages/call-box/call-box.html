@@ -4,8 +4,24 @@
 
 
 <ion-content>
+  <button ion-button color="full-light" item-start (click)="makeCall()">
+    <ion-icon name="call"></ion-icon>
+    Make Call
+  </button>
+
+  <button item-end color="full-light" ion-button (click)="pickCall()">
+    <ion-icon name="call"></ion-icon>
+    End Call
+  </button>
   <div class="call-shawdo"></div>
   <div class="call-box">
+
+    <input type="text" #peerkey id="peerkey" />
+    <video id="videoCallMyBox" class="video-box video-box-my" #videoCallMyBox muted="true" autoplay playsinline></video>
+    <video id="videoCallEndBox" class="video-box video-box-end" #videoCallEndBox muted="true" playsinline></video>
+
+
+
     <div class="call-box-header">
       <div class="user-picture">
         <img src="assets/img/marty-avatar.png" />
@@ -65,11 +81,4 @@
       </div>
     </div>
   </div>
-
-
-  <input type="text" #peerkey id="peerkey" />
-  <video id="videoCallBox" #videoCallBox muted="true" autoplay playsinline></video>
-
-
-  <button (click)="startVideo()">Start</button>
 </ion-content>

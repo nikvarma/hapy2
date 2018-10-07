@@ -79,7 +79,7 @@ export class HapyApp {
       if (res != null) {
         if (res.length > 0) {
           this.rootPage = MainPage;
-
+          this.call.initilizePeer(true);
           this.initLoad.loginToFirebase(res[0].uId);
           this.initLoad.verifyToken();
         } else {
@@ -91,8 +91,6 @@ export class HapyApp {
     });
 
     this.initLoad.appendScripts();
-
-    //this.call.initilizePeer(true);
     this.initTranslate();
   }
 

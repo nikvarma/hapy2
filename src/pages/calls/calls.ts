@@ -8,12 +8,6 @@ import {
 import { Item } from "../../models/item";
 import { Items } from "../../providers";
 
-/**
- * Generated class for the CallsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

@@ -13,6 +13,7 @@ import { Items, UserProvider, CallProvider, Api } from "../../providers";
 import { Logging } from "../../models/logging";
 import { FormControl } from "@angular/forms";
 import { Endpoints } from "../../config/Endpoints";
+import { Headers } from "@angular/http";
 
 @IonicPage()
 @Component({
@@ -104,8 +105,10 @@ export class SearchPage implements OnInit {
       searchOn: "username",
       searchType: "user"
     };
-
-    this.api.post(Endpoints.api.news + "v1/search/users", filter).subscribe(
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin" , "*");
+    this.api.post(Endpoints.api.news + "v1/search/users", filter, headers).subscribe(
       res => {
         if (res["jsonResult"] != null) {
           this.searchList = JSON.parse(res["jsonResult"]);

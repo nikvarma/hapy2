@@ -5,6 +5,7 @@ import { Api } from "../api/api";
 import { Endpoints } from "../../config/Endpoints";
 import { Observable } from "rxjs";
 import { Logging } from "../../models/logging";
+import { Headers } from "@angular/http";
 
 @Injectable()
 export class UserProvider {
@@ -65,11 +66,17 @@ export class UserProvider {
   }
 
   getUser(filter: any): Observable<any> {
-    return this.api.post(Endpoints.api.user + "v1/userinfo/get", filter);
+      let headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      headers.append("Access-Control-Allow-Origin" , "*");
+    return this.api.post(Endpoints.api.user + "v1/userinfo/get", filter, headers);
   }
 
   getUserOnColumns(filter: any): Observable<ArrayBuffer> {
-    return this.api.post(Endpoints.api.user + "v1/userinfo/getsearch", filter);
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin" , "*");
+    return this.api.post(Endpoints.api.user + "v1/userinfo/getsearch", filter, headers);
   }
 
   getUserCompDetail(filter: any): Promise<any> {

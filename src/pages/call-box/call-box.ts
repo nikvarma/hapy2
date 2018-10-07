@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, OnInit, ElementRef, Renderer2 } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -14,20 +14,34 @@ import { PopoverComponent } from "../../components/popover/popover";
   selector: "page-call-box",
   templateUrl: "call-box.html"
 })
-export class CallBoxPage {
-  videoCallBox: HTMLVideoElement;
+export class CallBoxPage implements OnInit {
+  localStream: any;
+  videosource: string;
+  callingToInfo: any = {};
+  callingObject: any = null;
+  @ViewChild("peerkey") peerkey: ElementRef;
+  @ViewChild("videoCallMyBox", { read: ElementRef }) videoCallMyBox: ElementRef;
+  @ViewChild("videoCallEndBox", { read: ElementRef }) videoCallEndBox: ElementRef;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController,
     private call: CallProvider,
-    private popoverCtrl: PopoverController
-  ) {}
+    private popoverCtrl: PopoverController,
+    private renderer: Renderer2
+  ) { }
 
-  peerkey: string;
-  videosource: string;
+
   ionViewDidLoad() {
-    console.log("ionViewDidLoad CallBoxPage");
+    this.callingEvent();
+  }
+
+  ngOnInit(): void {
+    //this.callingToInfo = this.navParams.get("uItem");
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+      this.localStream = stream;
+    });
+
   }
 
   moreOption(popevent): void {
@@ -37,35 +51,47 @@ export class CallBoxPage {
     });
   }
 
-  startVideo() {
-    this.call.initilizeVoiceCall(this.peerkey);
+  makeCall(): void {
+    this.callingToInfo.id = this.peerkey.nativeElement.value;
+    this.videoCallMyBox.nativeElement.srcObject = this.localStream;
+    const call = this.call.peer.call(this.callingToInfo.id, this.localStream);
+    this.sendCallRequest(call);
+  }
 
-    let audioSource = "communications";
-    let videoSource = "";
-    navigator.mediaDevices.enumerateDevices().then(devices => {
-      const videoInput = devices.find(device => device.kind === "videoinput");
+  pickCall(): void {
+    if (this.callingObject != null) {
+      this.callingObject.answer(this.localStream);
+      this.sendCallRequest(this.callingObject);
+    }
+  }
 
-      let constraints = {
-        audio: { deviceId: audioSource ? { exact: audioSource } : undefined },
-
-        video: {
-          deviceId: videoInput.deviceId ? { exact: videoSource } : undefined
-        }
-      };
-
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(stream => {
-          console.log(stream);
-          this.videoCallBox.srcObject = stream;
-        })
-        .catch(err => {
-          console.error(err);
-        });
+  callingEvent(): void {
+    this.call.peer.on("call", calling => {
+      this.callingObject = calling;
     });
   }
 
+  sendCallRequest(call: any): void {
+    call.on("stream", stream => {
+      const ele = this.videoCallEndBox.nativeElement;
+      ele.srcObject = stream;
+      ele.play();
+      console.log("SendCallRequest");
+    });
+    call.on("close", resEnd => {
+      console.log("End Call");
+      console.log(resEnd);
+    })
+  }
+
+  endCall(): void {
+    if (this.callingObject != null) {
+      this.callingObject.close();
+    }
+  }
+
   closeCall(): void {
+    this.endCall();
     this.viewCtrl.dismiss();
   }
 }

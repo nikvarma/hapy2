@@ -78,6 +78,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
   ionViewDidLoad() {}
 
   closeChatBox(): void {
+    this.isScrollDown = true;
     this.viewCtrl.dismiss();
   }
 
@@ -121,7 +122,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
                           ismediacontent: false,
                           mediatype: "png",
                           mediacontent:
-                            "http://localhost:58531/locationimages/" +
+                            "http://location.api.hapy.co.in/locationimages/" +
                             res["ResponseObject"]["Id"] +
                             ".png",
                           message: locAddress,
@@ -171,6 +172,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
     if (this.messageId == null) {
       this.getMessageId(true).then(res => {
         if (res != null) {
+          console.log(res);
           this.addToFb();
         }
       });
@@ -206,6 +208,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
   }
 
   fbCall(saveData: any): void {
+    console.log(this.messageId);
     this.fdb.database
       .ref("messages")
       .child(this.messageId)
@@ -327,7 +330,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
         let scrollH = scrollDim.scrollHeight;
         let scrollContentH = scrollDim.contentHeight;
         let scrolledH = scrollDim.scrollTop;
-        if (scrollContentH + scrolledH > scrollH - 50) {
+        if (scrollContentH + scrolledH > scrollH - 20) {
           this.isScrollDown = false;
         } else {
           this.isScrollDown = true;

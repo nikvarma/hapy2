@@ -34,7 +34,7 @@ export class Api {
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(this.url + "/" + endpoint, body, reqOpts);
+    return this.http.put(endpoint, body, reqOpts);
   }
 
   delete(endpoint: string, reqOpts?: any) {

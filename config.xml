@@ -122,7 +122,7 @@
         <variable name="XWALK_MODE" value="embedded" />
         <variable name="XWALK_MULTIPLEAPK" value="true" />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.4" />
-    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
 </widget>

@@ -100,7 +100,6 @@ export class WelcomePage implements OnInit, AfterViewInit {
 
       let option = new RequestOptions();
       option.headers = new Headers();
-      option.headers.append("Content-Type", "application/json");
 
       this.api
         .get(Endpoints.api.auth + "v1/otp/sendonmobile", httpParams, option)
@@ -249,6 +248,8 @@ export class WelcomePage implements OnInit, AfterViewInit {
     } else {
       this.loadingspinner = true;
       this.isBtnClicked = true;
+
+      
       this.api
         .post(Endpoints.api.auth + "v1/otp/verify", {
           id: this.otpData.id,
@@ -324,6 +325,9 @@ export class WelcomePage implements OnInit, AfterViewInit {
       }
       this.loadingspinner = true;
       this.isBtnClicked = true;
+      let headers = new Headers();
+      headers.append("content-type", "application/x-www-form-urlencoded");
+      headers.append("Access-Control-Allow-Origin", "*");
       this.api
         .post(Endpoints.api.user + "v1/users/save", {
           name: userName,
@@ -337,7 +341,7 @@ export class WelcomePage implements OnInit, AfterViewInit {
           profileimage: this.userDetails.profileimage,
           isactive: true,
           status: true
-        })
+        }, headers)
         .subscribe(
           res => {
             if (res["responseObject"] != null) {
