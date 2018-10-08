@@ -1,46 +1,16 @@
 import { Injectable, ElementRef } from "@angular/core";
-import { PeerConfig } from "../../config/PeerConfig";
 import { Storage } from "@ionic/storage";
 import { Api } from "../api/api";
 import { Logging } from "../../models/logging";
 import { Endpoints } from "../../config/Endpoints";
 import { Headers } from "@angular/http";
 
-declare var Peer;
-
 @Injectable()
 export class CallProvider {
-  peer: any;
   timCounter: any;
   globalStream: any;
   toCallElementRef: any;
-  constructor(private storage: Storage, private api: Api) { }
-
-  initilizePeer(isStart: boolean = false): void {
-    if (isStart) {
-      setTimeout(() => {
-        this.peer = new Peer({
-          key: PeerConfig.key,
-          debug: 3
-        });
-        console.log(this.peer);
-        this.peer.on("open", id => {
-          this.storage.set("myCallId", id);
-        });
-        this.peer.on('error', err => console.log(err));
-
-        this.peer.on('connection', c => {
-          // Show connection when it is completely ready
-          c.on('open', () => this.peerConnected(c));
-        });
-      }, 3000);
-    }
-  }
-
-
-  peerConnected(c: any): any {
-    console.log(c);
-  }
+  constructor(private storage: Storage, private api: Api) {}
 
   clearStorage(): Promise<any> {
     return this.storage.clear();
@@ -116,7 +86,7 @@ export class CallProvider {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("Access-Control-Allow-Origin", "*");
+      
       this.api
         .post(Endpoints.api.appsettings + "v1/logging/set", headers)
         .subscribe(
@@ -181,7 +151,7 @@ export class CallProvider {
     data: any[],
     action: any = "select"
   ): any {
-    return data.filter(function (item, index) {
+    return data.filter(function(item, index) {
       if (action == "delete") {
         if (item[key] == value) {
           data.splice(index);
@@ -198,7 +168,7 @@ export class CallProvider {
     return new Promise((resolve, reject) => {
       let img = new Image();
       img.crossOrigin = "Anonymous";
-      img.onload = function () {
+      img.onload = function() {
         let canvas = <HTMLCanvasElement>document.createElement("CANVAS"),
           ctx = canvas.getContext("2d"),
           dataURL;

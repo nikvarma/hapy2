@@ -14,6 +14,8 @@ import {
 } from "../providers";
 import { Endpoints } from "../config/Endpoints";
 import { Logging } from "../models/logging";
+import { PeerConnectionProvider } from "../providers/peer-connection/peer-connection";
+import { NetworkConnectionProvider } from "../providers/network-connection/network-connection";
 
 @Component({
   templateUrl: "app.html"
@@ -46,6 +48,8 @@ export class HapyApp {
     private initLoad: InitloadProvider,
     private call: CallProvider,
     private user: UserProvider,
+    private networkConnection: NetworkConnectionProvider,
+    private peerConnection: PeerConnectionProvider,
     private sqlLite: SqlStorageProvider
   ) {
     this.logging = new Logging();
@@ -66,7 +70,9 @@ export class HapyApp {
         Endpoints.api.appsettings + "v1/logging/setlogging",
         this.logging
       );
-
+      //Network check, Online or Offline
+      this.networkConnection.initializeNetworkEvent();
+      //this.sqlLite.createSQLLiteDB();
       this.initLoad.isPlatform("android").then(res => {
         this.initLoad.isPlatform("cordova").then(res => {
           if (res == true) {
@@ -74,12 +80,12 @@ export class HapyApp {
         });
       });
     });
-
+    //User check if user is already logged in or is not
     this.user.getLoggedUser().then(res => {
       if (res != null) {
         if (res.length > 0) {
           this.rootPage = MainPage;
-          this.call.initilizePeer(true);
+          this.peerConnection.initilizePeer(false);
           this.initLoad.loginToFirebase(res[0].uId);
           this.initLoad.verifyToken();
         } else {
@@ -90,7 +96,10 @@ export class HapyApp {
       }
     });
 
+    //Append required vendor scripts file
     this.initLoad.appendScripts();
+
+    //Active translator for the App
     this.initTranslate();
   }
 

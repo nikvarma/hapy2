@@ -6,5 +6,5 @@ export { SmileyProvider } from "./smiley/smiley";
 export { InitloadProvider } from "./initload/initload";
 export { CallProvider } from "./call/call";
 export { GoogleMapsProvider } from "./google-maps/google-maps";
-
+export { NetworkConnectionProvider, ConnectionStatus } from "./network-connection/network-connection";
 export { SqlStorageProvider } from "./sql-storage/sql-storage";

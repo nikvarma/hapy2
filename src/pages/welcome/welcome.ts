@@ -5,22 +5,18 @@ import {
   NavController,
   Slides,
   ToastController,
-  ActionSheetController
+  ActionSheetController,
+  Events,
+  ToastOptions
 } from "ionic-angular";
 import { MainPage } from "..";
-import { Api, CallProvider } from "../../providers";
+import { Api, CallProvider, ConnectionStatus } from "../../providers";
 import { Endpoints } from "../../config/Endpoints";
 import { RequestOptions, Headers } from "@angular/http";
 import { Logging } from "../../models/logging";
 import { ImagePicker, ImagePickerOptions } from "@ionic-native/image-picker";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 
-/**
- * The Welcome Page is a splash page that quickly describes the app,
- * and then directs the user to create an account or log in.
- * If you'd like to immediately put the user onto a login/signup page,
- * we recommend not using the Welcome page.
- */
 @IonicPage()
 @Component({
   selector: "page-welcome",
@@ -35,6 +31,7 @@ export class WelcomePage implements OnInit, AfterViewInit {
   logging: Logging;
   loadingspinner: boolean = false;
   isBtnClicked: boolean = false;
+  netConnection: ConnectionStatus;
   otpData = { code: "", id: "" };
   userDetails = {
     name: "",
@@ -57,6 +54,7 @@ export class WelcomePage implements OnInit, AfterViewInit {
     private camera: Camera,
     private toast: ToastController,
     private imagePicker: ImagePicker,
+    private events: Events,
     private actionSheetCtrl: ActionSheetController
   ) {
     this.logging = new Logging();
@@ -68,21 +66,17 @@ export class WelcomePage implements OnInit, AfterViewInit {
     let mobilenumber = this.userDataForm.get("txtmobilenumber").value;
 
     if (typeof countryCode == "object") {
-      this.toast
-        .create({
-          message: "Please select your country.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "Please select your country.",
+        position: "bottom",
+        duration: 2000
+      });
     } else if (typeof mobilenumber == "object") {
-      this.toast
-        .create({
-          message: "Please enter your mobile number.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "Please enter your mobile number.",
+        position: "bottom",
+        duration: 2000
+      });
     } else {
       this.loadingspinner = true;
       this.isBtnClicked = true;
@@ -100,7 +94,7 @@ export class WelcomePage implements OnInit, AfterViewInit {
 
       let option = new RequestOptions();
       option.headers = new Headers();
-
+      option.headers.append("content-type", "application/json");
       this.api
         .get(Endpoints.api.auth + "v1/otp/sendonmobile", httpParams, option)
         .subscribe(
@@ -115,34 +109,27 @@ export class WelcomePage implements OnInit, AfterViewInit {
               });
               this.call.setValueKey("otp", res["responseObject"]);
               setTimeout(() => {
-                this.toast
-                  .create({
-                    message: "OTP sent successfully.",
-                    duration: 2000
-                  })
-                  .present();
+                this.showToast({
+                  message: "OTP sent successfully.",
+                  duration: 2000
+                });
               }, 1000);
               this.loadingspinner = false;
               this.isBtnClicked = false;
             } else {
-              this.toast
-                .create({
-                  message: "Please try again after sometime.",
-                  duration: 2000
-                })
-                .present();
+              this.showToast({
+                message: "Please try again after sometime.",
+                duration: 2000
+              });
               this.loadingspinner = false;
               this.isBtnClicked = false;
             }
           },
           err => {
-            this.toast
-              .create({
-                message:
-                  "Something went wrong, please try again after sometime.",
-                duration: 2000
-              })
-              .present();
+            this.showToast({
+              message: "Something went wrong, please try again after sometime.",
+              duration: 2000
+            });
             this.logging.message = err;
             this.loadingspinner = false;
             this.isBtnClicked = false;
@@ -230,26 +217,21 @@ export class WelcomePage implements OnInit, AfterViewInit {
     let otp = this.userDataForm.get("txtverifyotp").value;
 
     if (typeof otp == "object") {
-      this.toast
-        .create({
-          message: "Please enter 6 digit OTP number.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "Please enter 6 digit OTP number.",
+        position: "bottom",
+        duration: 2000
+      });
     } else if (typeof otp == "string" && otp.length != 6) {
-      this.toast
-        .create({
-          message: "OTP should be 6 digit number.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "OTP should be 6 digit number.",
+        position: "bottom",
+        duration: 2000
+      });
     } else {
       this.loadingspinner = true;
       this.isBtnClicked = true;
 
-      
       this.api
         .post(Endpoints.api.auth + "v1/otp/verify", {
           id: this.otpData.id,
@@ -265,12 +247,10 @@ export class WelcomePage implements OnInit, AfterViewInit {
                 this.loadingspinner = false;
                 this.isBtnClicked = false;
               } else {
-                this.toast
-                  .create({
-                    message: "Invalid OTP, please enter valid OTP.",
-                    duration: 2000
-                  })
-                  .present();
+                this.showToast({
+                  message: "Invalid OTP, please enter valid OTP.",
+                  duration: 2000
+                });
                 this.loadingspinner = false;
                 this.isBtnClicked = false;
               }
@@ -290,30 +270,24 @@ export class WelcomePage implements OnInit, AfterViewInit {
     let username = this.userDataForm.get("txtusername").value;
     let dob = this.userDataForm.get("txtdob").value;
     if (typeof username == "object") {
-      this.toast
-        .create({
-          message: "Please enter you name.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "Please enter you name.",
+        position: "bottom",
+        duration: 2000
+      });
     } else if (username.length <= 3 || username.split(" ")[1] == null) {
-      this.toast
-        .create({
-          message:
-            "Name should be your full name, first and last name with space.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message:
+          "Name should be your full name, first and last name with space.",
+        position: "bottom",
+        duration: 2000
+      });
     } else if (typeof dob == "object") {
-      this.toast
-        .create({
-          message: "Please select you Date of Birth.",
-          position: "bottom",
-          duration: 2000
-        })
-        .present();
+      this.showToast({
+        message: "Please select you Date of Birth.",
+        position: "bottom",
+        duration: 2000
+      });
     } else {
       let userName = this.userDataForm.get("txtusername").value;
       let dob = this.userDataForm.get("txtdob").value;
@@ -326,22 +300,25 @@ export class WelcomePage implements OnInit, AfterViewInit {
       this.loadingspinner = true;
       this.isBtnClicked = true;
       let headers = new Headers();
-      headers.append("content-type", "application/x-www-form-urlencoded");
-      headers.append("Access-Control-Allow-Origin", "*");
+
       this.api
-        .post(Endpoints.api.user + "v1/users/save", {
-          name: userName,
-          fname: fname,
-          lname: lname,
-          dob: dob,
-          about: "I am Online",
-          Primarynumber: this.userDetails.primarynumber,
-          primarynumbercode: this.userDetails.primarynumbercode,
-          wallimage: this.userDetails.wallimage,
-          profileimage: this.userDetails.profileimage,
-          isactive: true,
-          status: true
-        }, headers)
+        .post(
+          Endpoints.api.user + "v1/users/save",
+          {
+            name: userName,
+            fname: fname,
+            lname: lname,
+            dob: dob,
+            about: "I am Online",
+            Primarynumber: this.userDetails.primarynumber,
+            primarynumbercode: this.userDetails.primarynumbercode,
+            wallimage: this.userDetails.wallimage,
+            profileimage: this.userDetails.profileimage,
+            isactive: true,
+            status: true
+          },
+          headers
+        )
         .subscribe(
           res => {
             if (res["responseObject"] != null) {
@@ -350,17 +327,17 @@ export class WelcomePage implements OnInit, AfterViewInit {
                 this.call.setValueKey("userinfo", {
                   userId: res["responseObject"].id
                 });
+                //Add Google FB Token Call and Peer Token Call
                 this.navCtrl.setRoot(MainPage);
               } else {
                 this.logging.methodeName = "goToHome";
                 this.call.setLoggin(this.logging);
-                this.toast
-                  .create({
-                    message:
-                      "Something went wrong, please try again after sometime.",
-                    duration: 2000
-                  })
-                  .present();
+                this.showToast({
+                  message:
+                    "Something went wrong, please try again after sometime.",
+                  duration: 2000,
+                  position: "bottom"
+                });
               }
               this.loadingspinner = false;
               this.isBtnClicked = false;
@@ -419,7 +396,13 @@ export class WelcomePage implements OnInit, AfterViewInit {
       ),
       txtdob: new FormControl(null, Validators.required)
     });
+    this.loadContry();
+  }
 
+  loadContry(): void {
+    // this.events.subscribe("network:status", status => {
+    //   this.netConnection = status;
+    //   if (status == ConnectionStatus.Online) {
     this.api
       .get(Endpoints.vendor.restcountriesapi + "name;callingCodes")
       .subscribe(
@@ -436,5 +419,26 @@ export class WelcomePage implements OnInit, AfterViewInit {
             .present();
         }
       );
+    // } else {
+    //   this.networkCall();
+    // }
+    //});
+  }
+
+  networkCall(): void {
+    this.showToast({
+      message: "No internet connection is available. App offline mode active.",
+      duration: 2000
+    });
+  }
+
+  showToast(option: ToastOptions): void {
+    this.toast
+      .create({
+        message: option.message,
+        duration: option.duration,
+        position: option.position
+      })
+      .present();
   }
 }

@@ -38,6 +38,8 @@ import { SqlStorageProvider } from "../providers/sql-storage/sql-storage";
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
 
 import { SQLiteMock } from "../mocks/providers/SQLiteMock";
+import { PeerConnectionProvider } from '../providers/peer-connection/peer-connection';
+import { NetworkConnectionProvider } from '../providers/network-connection/network-connection';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -111,7 +113,9 @@ export function provideSettings(storage: Storage) {
     UserProvider,
     CallchatmessageProvider,
     MessagesProvider,
-    SqlStorageProvider
+    SqlStorageProvider,
+    PeerConnectionProvider,
+    NetworkConnectionProvider
   ]
 })
 export class AppModule {}
