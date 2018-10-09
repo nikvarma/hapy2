@@ -7,6 +7,7 @@ import {
   ModalOptions
 } from "ionic-angular";
 import { AnimateContentLoadDirective } from "../../directives/animate-content-load/animate-content-load";
+import { CallProvider } from "../../providers";
 
 @IonicPage()
 @Component({
@@ -16,8 +17,9 @@ import { AnimateContentLoadDirective } from "../../directives/animate-content-lo
 })
 export class PostsPage implements OnInit {
   cardItems: any[];
-
+  userId: string;
   constructor(
+    private call: CallProvider,
     public navCtrl: NavController,
     public navaParam: NavParams,
     public modalCtrl: ModalController
@@ -60,7 +62,15 @@ export class PostsPage implements OnInit {
     let modalOptions: ModalOptions = {
       enableBackdropDismiss: true
     };
-    let newPost = this.modalCtrl.create("CreatePostPage", {}, modalOptions);
+    let newPost = this.modalCtrl.create(
+      "CreatePostPage",
+      {
+        uItem: {
+          toId: this.userId
+        }
+      },
+      modalOptions
+    );
     newPost.present();
 
     //this.navCtrl.push("AppFeedbackPage");
@@ -83,10 +93,13 @@ export class PostsPage implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.newPost();
+    this.call
+      .getValueByKey("userinfo")
+      .then(res => {
+        this.userId = res.userId;
+      })
+      .catch(err => {});
   }
 
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad PostsPage");
-  }
+  ionViewDidLoad() {}
 }

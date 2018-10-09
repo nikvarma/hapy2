@@ -32,6 +32,7 @@ export class CallBoxPage implements OnInit {
   videoCallMyBox: ElementRef;
   @ViewChild("videoCallEndBox", { read: ElementRef })
   videoCallEndBox: ElementRef;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,9 +44,9 @@ export class CallBoxPage implements OnInit {
   ) {}
 
   ionViewDidLoad() {
-    this.peerConnection.callingObject.subscribe(res => {
-      this.callingObject = res;
-    });
+    // this.peerConnection.callingObject.subscribe(res => {
+    //   this.callingObject = res;
+    // });
   }
 
   ngOnInit(): void {
@@ -54,6 +55,9 @@ export class CallBoxPage implements OnInit {
       .getUserMedia({ audio: true, video: true })
       .then(stream => {
         this.localStream = stream;
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

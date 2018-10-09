@@ -322,7 +322,7 @@ export class WelcomePage implements OnInit, AfterViewInit {
         .subscribe(
           res => {
             if (res["responseObject"] != null) {
-              debugger;
+              
               if (res["responseObject"].status == true) {
                 this.call.setValueKey("userinfo", {
                   userId: res["responseObject"].id

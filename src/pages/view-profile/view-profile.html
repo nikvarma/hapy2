@@ -13,6 +13,16 @@
       </button>
     </ion-buttons> -->
 
+    <ion-buttons end (click)="sendMessage($event)" *ngIf="userId != userDetail?.user?.uid">
+      <button ion-button clear>
+        <ion-icon name="call" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end (click)="sendMessage($event)" *ngIf="userId != userDetail?.user?.uid">
+      <button ion-button clear>
+        <ion-icon name="text" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end (click)="moreOption($event)">
       <button ion-button clear>
         <ion-icon name="more" showWhen="core,android,windows"></ion-icon>
@@ -31,14 +41,9 @@
   <ion-card>
     <img src="assets/img/advance-card-tmntr.jpg" />
 
-    <div class="user-profile-message-call">
-      <ion-buttons end (click)="sendMessage($event)" *ngIf="userId != userDetail?.user?.uid">
-
-        <button ion-button clear>
-          <ion-icon name="text" showWhen="core,android,windows"></ion-icon>
-        </button>
-      </ion-buttons>
-    </div>
+    <!-- <div class="user-profile-message-call">
+      
+    </div> -->
 
     <ion-item class="profile">
       <ion-avatar item-start>
