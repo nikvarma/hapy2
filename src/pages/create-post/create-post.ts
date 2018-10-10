@@ -18,10 +18,9 @@ import {
 } from "ionic-angular";
 import { EditableInputboxDirective } from "../../directives/editable-inputbox/editable-inputbox";
 import { MediaViewerComponent } from "../../components/media-viewer/media-viewer";
-import { CallProvider, Api } from "../../providers";
+import { CallProvider } from "../../providers";
 import { Logging } from "../../models/logging";
-import { Headers } from "@angular/http";
-import { Endpoints } from "../../config/Endpoints";
+import { PostProvider } from "../../providers/post/post";
 
 @IonicPage()
 @Component({
@@ -47,7 +46,6 @@ export class CreatePostPage
   logging: Logging;
   selectedTile: any;
   constructor(
-    private api: Api,
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -55,13 +53,16 @@ export class CreatePostPage
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
     private call: CallProvider,
+    private post: PostProvider,
     private toast: ToastController
   ) {
     this.logging = new Logging();
     this.logging.className = "Create Post";
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    
+  }
 
   closePost(): void {
     this.viewCtrl.dismiss();
@@ -81,6 +82,7 @@ export class CreatePostPage
         this.logging.message = err;
         this.call.setLoggin(this.logging);
       });
+
   }
 
   ngAfterViewInit(): void {
@@ -319,25 +321,8 @@ export class CreatePostPage
       status: true
     };
 
-    let header = new Headers();
-    header.append("content-type", "application/json");
-    this.api
-      .put(Endpoints.api.news + "v1/post/create", saveData, header)
-      .subscribe(
-        res => {
-          if (res["responseObject"] != null) {
-            this.toast
-              .create({
-                message: "Post created successfully.",
-                duration: 2000
-              })
-              .present();
-          }
-        },
-        err => {
-          console.log(err);
-        }
-      );
-    //this.viewCtrl.dismiss();
+    this.post.savePost(saveData).then(res => {});
+    
+    this.viewCtrl.dismiss();
   }
 }

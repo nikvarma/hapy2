@@ -22,10 +22,14 @@ import {
 })
 export class EditableInputboxDirective {
   private htmlElement = HTMLElement;
-  @Input("forecolor") foreColor;
-  @Input("background") backGround;
-  @Input("elementstyle") elementStyle;
-  @Output("openmodal") openModal = new EventEmitter();
+  @Input("forecolor")
+  foreColor;
+  @Input("background")
+  backGround;
+  @Input("elementstyle")
+  elementStyle;
+  @Output("openmodal")
+  openModal = new EventEmitter();
   bgPaint: string;
   elemStyle: any;
   divElement: HTMLElement;
@@ -44,17 +48,11 @@ export class EditableInputboxDirective {
   private createDivElement() {
     this.divElement = this.render2.createElement("div");
     this.divElement.contentEditable = "true";
-    
-    this.divElement.setAttribute(
-      "style",
-      "width: 100%; min-height: 300px;"
-    );
+
+    this.divElement.setAttribute("style", "width: 100%; min-height: 300px;");
     this.divElement.setAttribute("id", "contenteditable-container");
-    
     this.render2.appendChild(this.htmlElement, this.divElement);
   }
-
-
 
   private positionSetter(editableDiv: HTMLElement): Promise<any> {
     return new Promise((resolve, reject) => {

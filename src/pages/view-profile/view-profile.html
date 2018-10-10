@@ -65,7 +65,7 @@
         </button>
       </ion-buttons>
 
-      <ion-buttons item-end (click)="unFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && userDetail?.user?.friend?.isaccpted && (userDetail?.user?.friend?.fid.toLowerCase() == userId.toLowerCase() || userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase()) && !sendFriendRequestSpinner">
+      <ion-buttons item-end (click)="unFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && !userDetail?.user?.friend?.isaccpted && (userDetail?.user?.friend?.fid.toLowerCase() == userId.toLowerCase() || userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase()) && !sendFriendRequestSpinner">
         <button ion-button small clear round class="addfriend camelcase-text">
           <ion-icon color="danger" name="remove-circle"></ion-icon>
           Disconnect
@@ -73,7 +73,7 @@
       </ion-buttons>
 
       <ion-buttons item-end (click)="accpetFriend($event)" *ngIf="userId.toLowerCase() != userDetail?.user?.uid.toLowerCase() && !userDetail?.user?.friend?.isaccpted && userDetail?.user?.friend?.tid.toLowerCase() == userId.toLowerCase() && !sendFriendRequestSpinner">
-        <button ion-button small clear round class="addfriend camelcase-text">
+        <button ion-button small clear round class="accpetfriend camelcase-text">
           <ion-icon name="contacts"></ion-icon>
           Accpet
         </button>

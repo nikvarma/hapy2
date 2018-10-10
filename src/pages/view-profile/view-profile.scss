@@ -195,6 +195,20 @@ page-view-profile {
     }
   }
 
+  .accpetfriend {
+    font-size: 1.3rem;
+    font-weight: inherit;
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid #ed143d;
+    & .button-inner {
+      color: #ed143d;
+      & ion-icon {
+        padding: 5px;
+      }
+      padding: 0px 7px 0 2px;
+    }
+  }
   .addfriend {
     font-size: 1.3rem;
     font-weight: inherit;

@@ -4,7 +4,9 @@ import {
   NavController,
   NavParams,
   ModalController,
-  ModalOptions
+  ModalOptions,
+  ToastController,
+  Events
 } from "ionic-angular";
 import { AnimateContentLoadDirective } from "../../directives/animate-content-load/animate-content-load";
 import { CallProvider } from "../../providers";
@@ -22,6 +24,8 @@ export class PostsPage implements OnInit {
     private call: CallProvider,
     public navCtrl: NavController,
     public navaParam: NavParams,
+    private events: Events,
+    private toastCtrl: ToastController,
     public modalCtrl: ModalController
   ) {
     this.cardItems = [
@@ -72,6 +76,16 @@ export class PostsPage implements OnInit {
       modalOptions
     );
     newPost.present();
+    newPost.onDidDismiss(res => {
+      if (res) {
+        this.toastCtrl
+          .create({
+            message: "Post is publishing, please wait till post get published.",
+            duration: 2000
+          })
+          .present();
+      }
+    });
 
     //this.navCtrl.push("AppFeedbackPage");
   }
@@ -99,6 +113,9 @@ export class PostsPage implements OnInit {
         this.userId = res.userId;
       })
       .catch(err => {});
+    this.events.subscribe("post:request", res => {
+      console.log(res);
+    });
   }
 
   ionViewDidLoad() {}
