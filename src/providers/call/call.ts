@@ -82,11 +82,45 @@ export class CallProvider {
     });
   }
 
+  appendKeyValue(keyName: string, keyValue: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      let records: Array<{}> = [];
+      this.getValueByKey(keyName)
+        .then(res => {
+          if (res != null) {
+            for (let item in res) {
+              records.push(res[item]);
+            }
+            records.push(keyValue);
+            this.setValueKey(keyName, records);
+            resolve(true);
+          } else {
+            records.push(keyValue);
+            this.setValueKey(keyName, records).then(res => {
+              resolve(true);
+            });
+          }
+        })
+        .catch(err => {
+          resolve(false);
+        });
+    });
+  }
+
+  appendValue(key: Array<{}>, items: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      for (let item in items) {
+        key.push(item);
+      }
+      resolve(key);
+    });
+  }
+
   setLoggin(logging: Logging): Promise<any> {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append("Content-Type", "application/json");
-      
+
       this.api
         .post(Endpoints.api.appsettings + "v1/logging/set", headers)
         .subscribe(

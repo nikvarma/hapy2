@@ -3,11 +3,12 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ModalController
+  ModalController,
+  Events,
+  ToastController
 } from "ionic-angular";
 import { Item } from "../../models/item";
-import { Items } from "../../providers";
-
+import { Items, CallProvider } from "../../providers";
 
 @IonicPage()
 @Component({
@@ -15,13 +16,16 @@ import { Items } from "../../providers";
   templateUrl: "calls.html"
 })
 export class CallsPage implements OnInit {
+  callList: any = [];
   currentItems: Item[];
-
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     public items: Items,
-    public modalCtrl: ModalController
+    private event: Events,
+    private call: CallProvider,
+    public navParams: NavParams,
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) {
     this.currentItems = this.items.query();
   }

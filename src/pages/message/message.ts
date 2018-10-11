@@ -21,6 +21,7 @@ import { Operation } from "../../enums/operations";
 export class MessagePage implements OnInit {
   currentItems: Item[];
   userId: any;
+  private chatList: any = [];
   logging: Logging;
   constructor(
     public navCtrl: NavController,
@@ -28,7 +29,7 @@ export class MessagePage implements OnInit {
     public items: Items,
     public modalCtrl: ModalController,
     private call: CallProvider,
-    private toast: ToastController,
+    private toastCtrl: ToastController,
     private callchatMessage: CallchatmessageProvider
   ) {
     this.logging = new Logging();

@@ -13,6 +13,7 @@ import { PopoverComponent } from "../../components/popover/popover";
 import { CallProvider, UserProvider, Api } from "../../providers";
 import { Endpoints } from "../../config/Endpoints";
 import { Logging } from "../../models/logging";
+import { CallchatmessageProvider } from "../../providers/callchatmessage/callchatmessage";
 
 @IonicPage()
 @Component({
@@ -26,6 +27,7 @@ export class ViewProfilePage implements OnInit {
   userId: string = "";
   loggedUserDetail: any;
   logging: Logging;
+  messageId: string;
   userInfo: {} = {};
   postList: any = [];
   videoList: any = [];
@@ -46,6 +48,7 @@ export class ViewProfilePage implements OnInit {
     private call: CallProvider,
     private user: UserProvider,
     private api: Api,
+    private callchatMessage: CallchatmessageProvider,
     private toast: ToastController
   ) {
     this.call.getValueByKey("userinfo").then(res => {
@@ -63,6 +66,25 @@ export class ViewProfilePage implements OnInit {
 
   ionViewDidLoad() {
     this.profileuserinfocontrols = "Post";
+    this.getMessageId();
+  }
+
+  getMessageId(): any {
+    let saveData = {
+      fromId: this.userId,
+      toId: this.userDetail.user.uid,
+      isactive: true,
+      status: true,
+      issave: false
+    };
+    this.callchatMessage
+      .saveCallChat(saveData)
+      .then(res => {
+        if (res["id"] != null) {
+          this.messageId = res["id"];
+        }
+      })
+      .catch(err => {});
   }
 
   accpetFriend(): void {
@@ -302,7 +324,8 @@ export class ViewProfilePage implements OnInit {
     let msgBox = this.modalCtrl.create("ChatBoxPage", {
       uItem: {
         fuid: this.userId,
-        tuid: this.userDetail.user.uid
+        tuid: this.userDetail.user.uid,
+        msgId: this.messageId
       }
     });
     msgBox.present();

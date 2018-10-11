@@ -60,9 +60,7 @@ export class CreatePostPage
     this.logging.className = "Create Post";
   }
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewDidLoad() {}
 
   closePost(): void {
     this.viewCtrl.dismiss();
@@ -82,7 +80,6 @@ export class CreatePostPage
         this.logging.message = err;
         this.call.setLoggin(this.logging);
       });
-
   }
 
   ngAfterViewInit(): void {
@@ -233,7 +230,8 @@ export class CreatePostPage
   backgroundTile(): void {
     let tileObj = this.modalCtrl.create("BackgroundTilePage");
     tileObj.onDidDismiss(data => {
-      if (data) {
+      console.log(data);
+      if (data && data.clear) {
         this.selectedTile = data;
         if (data.clear) {
           this.editableDiv.divElement.style.removeProperty("background");
@@ -303,6 +301,15 @@ export class CreatePostPage
   }
 
   createPost(): void {
+    console.log(this.editableDiv.divElement.innerText);
+    let posttext = this.editableDiv.divElement.innerText.trim();
+    if (posttext.length < 5) {
+      this.toast.create({
+        message: "Write something in Post box.",
+        duration: 2000
+      }).present();
+      return;
+    }
     let saveData = {
       contenttext: {
         style: this.selectedTile,
@@ -322,7 +329,9 @@ export class CreatePostPage
     };
 
     this.post.savePost(saveData).then(res => {});
-    
-    this.viewCtrl.dismiss();
+
+    this.viewCtrl.dismiss({
+      msg: "Post is publishing, please wait till post get published."
+    });
   }
 }

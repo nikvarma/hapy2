@@ -23,11 +23,7 @@ import { Observable } from "rxjs";
 import { AngularFireDatabase } from "angularfire2/database";
 import { InitloadProvider, CallProvider, Api } from "../../providers";
 import { CallchatmessageProvider } from "../../providers/callchatmessage/callchatmessage";
-import {
-  MessageBox,
-  MessageSendBy,
-  MessageConnection
-} from "../../models/index";
+import { MessageBox, MessageSendBy } from "../../models/index";
 import { Endpoints } from "../../config/Endpoints";
 import { Logging } from "../../models/logging";
 
@@ -122,7 +118,8 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
                           ismediacontent: false,
                           mediatype: "png",
                           mediacontent:
-                            "http://location.api.hapy.co.in/locationimages/" +
+                            Endpoints.locationimage +
+                            "locationimages/" +
                             res["ResponseObject"]["Id"] +
                             ".png",
                           message: locAddress,
@@ -204,19 +201,23 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
     console.log(this.ionTextarea);
     this.ionTextarea.nativeElement.children[0].removeAttribute("style");
     this.messageTextBox = null;
+    this.textempty = true;
     this.ionTextarea.nativeElement.children[0].focus();
   }
 
   fbCall(saveData: any): void {
+    saveData.fbstatus = 0;
     console.log(this.messageId);
-    this.fdb.database
-      .ref("messages")
-      .child(this.messageId)
-      .push(saveData)
-      .then(res => {})
-      .catch(err => {
-        this.initLoad.loginToFirebase(this.userId);
-      });
+    this.messageList.push(saveData);
+    this.call.appendKeyValue(this.messageId, saveData);
+    // this.fdb.database
+    //   .ref("messages")
+    //   .child(this.messageId)
+    //   .push(saveData)
+    //   .then(res => {})
+    //   .catch(err => {
+    //     this.initLoad.loginToFirebase(this.userId);
+    //   });
   }
 
   getMessageId(issave: boolean): Promise<any> {
@@ -251,8 +252,15 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
     });
   }
 
+  sinceTime(date: number): any {
+    return this.call.timeSince(date);
+  }
+
   ngOnInit(): void {
     this.toId = this.navParams.get("uItem").tuid;
+    this.messageId = this.navParams.get("uItem").msgId
+      ? this.navParams.get("uItem").msgId
+      : null;
     this.call.getValueByKey("userinfo").then(res => {
       this.userId = res.userId;
       this.getMessageId(false);
@@ -272,7 +280,7 @@ export class ChatBoxPage implements OnInit, AfterContentInit, AfterViewInit {
             jsonData.message = jsonData.message.trim().replace(/\n/g, "<br />");
           }
           if (jsonData.sdate != null) {
-            jsonData.sdate = this.call.timeSince(jsonData.sdate);
+            //jsonData.sdate = this.call.timeSince(jsonData.sdate);
           }
           this.messageList.push(jsonData);
           if (!this.isScrollDown) {

@@ -38,10 +38,10 @@ import { SqlStorageProvider } from "../providers/sql-storage/sql-storage";
 import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
 
 import { SQLiteMock } from "../mocks/providers/SQLiteMock";
-import { PeerConnectionProvider } from '../providers/peer-connection/peer-connection';
-import { NetworkConnectionProvider } from '../providers/network-connection/network-connection';
-import { PostProvider } from '../providers/post/post';
-import { ProfiledetailProvider } from '../providers/profiledetail/profiledetail';
+import { PeerConnectionProvider } from "../providers/peer-connection/peer-connection";
+import { NetworkConnectionProvider } from "../providers/network-connection/network-connection";
+import { PostProvider } from "../providers/post/post";
+import { ProfiledetailProvider } from "../providers/profiledetail/profiledetail";
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.

@@ -114,6 +114,10 @@ export class PostsPage implements OnInit {
       })
       .catch(err => {});
     this.events.subscribe("post:request", res => {
+      this.toastCtrl.create({
+        message: "Post publised successfully.",
+        duration: 2000
+      }).present();
       console.log(res);
     });
   }

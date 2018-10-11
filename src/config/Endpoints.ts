@@ -15,6 +15,7 @@ export const Endpoints = {
   //   appsettings: "http://appsettings.api.hapy.co.in/api/",
   //   notification: "http://notification.api.hapy.co.in/api/"
   // },
+  //locationimage: "http://localhost:58531/",
   api: {
     user: "http://localhost:58501/api/",
     news: "http://localhost:58504/api/",
@@ -27,6 +28,7 @@ export const Endpoints = {
     appsettings: "http://localhost:62693/api/",
     notification: "http://localhost:62981/api/"
   },
+  locationimage: "http://localhost:58531/",
   apisubpath: {
     user: {},
     auth: {

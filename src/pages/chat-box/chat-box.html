@@ -59,9 +59,9 @@
 
           <div class="delivertime">
             <span class="msg-block">
-              <ion-icon class="icon" name="time" small></ion-icon>
+              <!-- <ion-icon class="icon" name="time" small></ion-icon> -->
               <span class="text">
-                {{ item?.sdate }}
+                {{ item?.sdate | date: 'shortTime' }}
               </span>
             </span>
           </div>
