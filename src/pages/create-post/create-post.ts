@@ -69,7 +69,7 @@ export class CreatePostPage
   ngOnInit(): void {
     this.uItem = this.navParams.get("uItem");
     this.toId = this.uItem["toId"];
-    this.postData.viewto = "public";
+    this.postData.viewto = "3";
     this.call
       .getValueByKey("userinfo")
       .then(res => {
@@ -113,30 +113,30 @@ export class CreatePostPage
       inputs: [
         {
           label: "Public",
-          value: "Public",
+          value: "3",
           type: "radio",
-          checked: this.postData.viewto == "Public",
+          checked: this.postData.viewto == "3",
           name: "postviewprivacy"
         },
         {
           label: "Only me",
-          value: "Only me",
+          value: "0",
           type: "radio",
-          checked: this.postData.viewto == "Only me",
+          checked: this.postData.viewto == "0",
           name: "postviewprivacy"
         },
         {
           label: "Friends",
-          value: "Friends",
+          value: "1",
           type: "radio",
-          checked: this.postData.viewto == "Friends",
+          checked: this.postData.viewto == "1",
           name: "postviewprivacy"
         },
         {
           label: "Friends of friends",
-          value: "Friends of friends",
+          value: "2",
           type: "radio",
-          checked: this.postData.viewto == "Friends of friends",
+          checked: this.postData.viewto == "2",
           name: "postviewprivacy"
         }
       ],
